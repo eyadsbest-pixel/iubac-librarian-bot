@@ -1,0 +1,191 @@
+{
+  "channel": "@iubac4medicin",
+  "modules": [
+    {
+      "id": "pns",
+      "name": "🧠 PNS - الجهاز العصبيّ الطّرفيّ",
+      "name_short": "PNS",
+      "collection_post_id": 2436,
+      "subjects": [
+        {
+          "id": "pns_histology",
+          "name": "💫 Histology",
+          "message_id": 2426,
+          "lectures": []
+        },
+        {
+          "id": "pns_microbiology",
+          "name": "💫 Microbiology",
+          "message_id": 2427,
+          "lectures": []
+        },
+        {
+          "id": "pns_physiology",
+          "name": "💫 Physiology",
+          "message_id": 2428,
+          "lectures": []
+        },
+        {
+          "id": "pns_anatomy",
+          "name": "💫 Anatomy",
+          "message_id": 2429,
+          "lectures": [
+            {
+              "id": "l1782990778",
+              "name": "المحاضرتين الأولى والثّانية للأناتومي\nللدّكتور يوسف",
+              "pdf_file_id": "BQACAgQAAxkBAAPPakZD_qrAHBhglDnFU0wpyZYdAS4AAqodAALamNBQPGkYbFMPljE8BA"
+            }
+          ]
+        },
+        {
+          "id": "pns_pharmacology",
+          "name": "💫 Pharmacology",
+          "message_id": 2430,
+          "lectures": []
+        },
+        {
+          "id": "pns_biochemistry",
+          "name": "💫 Biochemistry",
+          "message_id": 2431,
+          "lectures": []
+        },
+        {
+          "id": "pns_embryology",
+          "name": "💫 Embryology",
+          "message_id": 2432,
+          "lectures": []
+        },
+        {
+          "id": "pns_pathology",
+          "name": "💫 Pathology",
+          "message_id": 2433,
+          "lectures": []
+        },
+        {
+          "id": "pns_surgery_medicine",
+          "name": "💫 Surgery & Medicine",
+          "message_id": 2434,
+          "lectures": []
+        }
+      ]
+    },
+    {
+      "id": "hls",
+      "name": "🩸 HLS - الجهاز الدّمويّ اللمفاويّ",
+      "name_short": "HLS",
+      "collection_post_id": 2609,
+      "subjects": [
+        {
+          "id": "hls_histology",
+          "name": "💫 Histology",
+          "message_id": 2598,
+          "lectures": []
+        },
+        {
+          "id": "hls_microbiology",
+          "name": "💫 Microbiology",
+          "message_id": 2599,
+          "lectures": []
+        },
+        {
+          "id": "hls_physiology",
+          "name": "💫 Physiology",
+          "message_id": 2600,
+          "lectures": []
+        },
+        {
+          "id": "hls_anatomy",
+          "name": "💫 Anatomy",
+          "message_id": 2601,
+          "lectures": []
+        },
+        {
+          "id": "hls_pharmacology",
+          "name": "💫 Pharmacology",
+          "message_id": 2602,
+          "lectures": []
+        },
+        {
+          "id": "hls_biochemistry",
+          "name": "💫 Biochemistry",
+          "message_id": 2603,
+          "lectures": []
+        },
+        {
+          "id": "hls_pathology",
+          "name": "💫 Pathology",
+          "message_id": 2604,
+          "lectures": []
+        },
+        {
+          "id": "hls_community",
+          "name": "💫 Community",
+          "message_id": 2605,
+          "lectures": []
+        }
+      ]
+    },
+    {
+      "id": "ugs",
+      "name": "🔺 UGS - الجهاز البوليّ التّناسليّ",
+      "name_short": "UGS",
+      "collection_post_id": 2797,
+      "subjects": [
+        {
+          "id": "ugs_histology",
+          "name": "💫 Histology",
+          "message_id": 2787,
+          "lectures": []
+        },
+        {
+          "id": "ugs_microbiology",
+          "name": "💫 Microbiology",
+          "message_id": 2788,
+          "lectures": []
+        },
+        {
+          "id": "ugs_physiology",
+          "name": "💫 Physiology",
+          "message_id": 2789,
+          "lectures": []
+        },
+        {
+          "id": "ugs_anatomy",
+          "name": "💫 Anatomy",
+          "message_id": 2790,
+          "lectures": []
+        },
+        {
+          "id": "ugs_pharmacology",
+          "name": "💫 Pharmacology",
+          "message_id": 2791,
+          "lectures": []
+        },
+        {
+          "id": "ugs_biochemistry",
+          "name": "💫 Biochemistry",
+          "message_id": 2792,
+          "lectures": []
+        },
+        {
+          "id": "ugs_embryology",
+          "name": "💫 Embryology",
+          "message_id": 2793,
+          "lectures": []
+        },
+        {
+          "id": "ugs_pathology",
+          "name": "💫 Pathology",
+          "message_id": 2794,
+          "lectures": []
+        },
+        {
+          "id": "ugs_community_medicine_surgery",
+          "name": "💫 Community & Medicine & Surgery",
+          "message_id": 2795,
+          "lectures": []
+        }
+      ]
+    }
+  ]
+}
