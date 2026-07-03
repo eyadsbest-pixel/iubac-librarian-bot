@@ -631,13 +631,23 @@ async def menu_command(update: Update, context: ContextTypes.DEFAULT_TYPE) -> in
             row = []
     if row:
         keyboard.append(row)
-        
+    
+    keyboard.append(["🔙 القائمة الرئيسية"])
     reply_markup = ReplyKeyboardMarkup(keyboard, resize_keyboard=True)
     await update.message.reply_text("🔽 <b>اختر الموديول:</b>", reply_markup=reply_markup, parse_mode="HTML")
     return STUDENT_MODULE
 
 async def student_module_handler(update: Update, context: ContextTypes.DEFAULT_TYPE) -> int:
     text = update.message.text
+    
+    if text in ["🔙 Go Back", "🔙 القائمة الرئيسية"]:
+        await update.message.reply_text(
+            "📚 <b>أهلاً بك في بوت أمين مكتبة أيوباك!</b>\n"
+            "استخدم الأمر /menu لعرض القائمة.",
+            parse_mode="HTML", reply_markup=ReplyKeyboardRemove()
+        )
+        return ConversationHandler.END
+    
     db = load_data()
     
     module = next((m for m in db["modules"] if m["name"] == text), None)
