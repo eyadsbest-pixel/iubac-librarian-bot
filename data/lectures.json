@@ -202,7 +202,12 @@
           "id": "ba3c8010",
           "name": "Anatomy",
           "files": [],
-          "lectures": []
+          "lectures": [
+            {
+              "id": "l1783121623",
+              "name": "Ok"
+            }
+          ]
         },
         {
           "id": "2360fcc0",
