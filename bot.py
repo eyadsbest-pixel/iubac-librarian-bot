@@ -464,7 +464,16 @@ async def pick_subject_for_lecture_cb(update: Update, context: ContextTypes.DEFA
         save_data(db)
         
     for l in subject.get("lectures", []):
-        keyboard.append([InlineKeyboardButton(f"🗑 حذف: {l['name']}", callback_data=f"dellec_{l['id']}")])
+        keyboard.append([InlineKeyboardButton(f"📖 {l['name']}", callback_data="none")])
+        keyboard.append([
+            InlineKeyboardButton("➕ تسجيل", callback_data=f"addrec_{l['id']}"),
+            InlineKeyboardButton("🗑 تسجيل", callback_data=f"delrec_{l['id']}")
+        ])
+        keyboard.append([
+            InlineKeyboardButton("➕ ملف", callback_data=f"addpdf_{l['id']}"),
+            InlineKeyboardButton("🗑 ملف", callback_data=f"delpdf_{l['id']}")
+        ])
+        keyboard.append([InlineKeyboardButton("🗑 حذف المحاضرة كاملة", callback_data=f"dellec_{l['id']}")])
         
     keyboard.append([InlineKeyboardButton("➕ إضافة محاضرة جديدة", callback_data="add_lecture")])
     keyboard.append([InlineKeyboardButton(BTN_BACK, callback_data=f"upmod_{mod_id}")])
@@ -494,6 +503,31 @@ async def manage_lectures_cb(update: Update, context: ContextTypes.DEFAULT_TYPE)
         
         subject["lectures"] = [l for l in subject["lectures"] if l["id"] != lec_id]
         save_data(db)
+        return await pick_subject_for_lecture_cb(update, context)
+        
+    elif data.startswith("addrec_") or data.startswith("addpdf_"):
+        action, lec_id = data.split("_", 1)
+        context.user_data["current_lec_id"] = lec_id
+        context.user_data["upload_target"] = "audio_file_id" if action == "addrec" else "pdf_file_id"
+        
+        msg = "أرسل التسجيل الآن (أي نوع ملف):" if action == "addrec" else "أرسل ملف الـ PDF الآن:"
+        markup = ReplyKeyboardMarkup([[BTN_DONE]], resize_keyboard=True)
+        await query.message.reply_text(f"👉 {msg}\nعند الانتهاء، اضغط على '{BTN_DONE}'.", reply_markup=markup)
+        return A_WAIT_FOR_LECTURE_FILE
+        
+    elif data.startswith("delrec_") or data.startswith("delpdf_"):
+        action, lec_id = data.split("_", 1)
+        db = load_data()
+        mod_id = context.user_data["upload_mod_id"]
+        subj_id = context.user_data["upload_subj_id"]
+        module = next((m for m in db["modules"] if m["id"] == mod_id), None)
+        subject = next((s for s in module["subjects"] if s["id"] == subj_id), None)
+        lecture = next((l for l in subject["lectures"] if l["id"] == lec_id), None)
+        
+        target_field = "audio_file_id" if action == "delrec" else "pdf_file_id"
+        if target_field in lecture:
+            del lecture[target_field]
+            save_data(db)
         return await pick_subject_for_lecture_cb(update, context)
 
 async def receive_lecture_name(update: Update, context: ContextTypes.DEFAULT_TYPE) -> int:
@@ -537,21 +571,39 @@ async def receive_lecture_file(update: Update, context: ContextTypes.DEFAULT_TYP
     subject = next((s for s in module["subjects"] if s["id"] == subj_id), None)
     lecture = next((l for l in subject["lectures"] if l["id"] == lec_id), None)
     
+    target = context.user_data.get("upload_target")
+    file_id = None
+    
     if update.message.document:
-        lecture["pdf_file_id"] = update.message.document.file_id
-        save_data(db)
-        await update.message.reply_text("✅ تم حفظ ملف الـ PDF للمحاضرة.")
+        file_id = update.message.document.file_id
     elif update.message.audio:
-        lecture["audio_file_id"] = update.message.audio.file_id
-        save_data(db)
-        await update.message.reply_text("✅ تم حفظ التسجيل الصوتي (Audio) للمحاضرة.")
+        file_id = update.message.audio.file_id
     elif update.message.voice:
-        lecture["audio_file_id"] = update.message.voice.file_id
+        file_id = update.message.voice.file_id
+    elif update.message.video:
+        file_id = update.message.video.file_id
+    elif update.message.photo:
+        file_id = update.message.photo[-1].file_id
+
+    if not file_id:
+        await update.message.reply_text("⚠️ الرجاء إرسال ملف صالح.")
+        return A_WAIT_FOR_LECTURE_FILE
+
+    if target:
+        lecture[target] = file_id
         save_data(db)
-        await update.message.reply_text("✅ تم حفظ التسجيل الصوتي (Voice) للمحاضرة.")
+        msg_type = "التسجيل" if target == "audio_file_id" else "ملف الـ PDF"
+        await update.message.reply_text(f"✅ تم حفظ {msg_type} للمحاضرة بنجاح.")
     else:
-        await update.message.reply_text("⚠️ الرجاء إرسال ملف (PDF) أو تسجيل صوتي.")
-        
+        if update.message.document:
+            lecture["pdf_file_id"] = file_id
+            save_data(db)
+            await update.message.reply_text("✅ تم حفظ ملف الـ PDF للمحاضرة.")
+        else:
+            lecture["audio_file_id"] = file_id
+            save_data(db)
+            await update.message.reply_text("✅ تم حفظ التسجيل للمحاضرة.")
+            
     return A_WAIT_FOR_LECTURE_FILE
 
 # -- Manage Admins --
@@ -799,11 +851,21 @@ async def student_lecture_handler(update: Update, context: ContextTypes.DEFAULT_
                 await update.message.reply_text("⚠️ لم يتم رفع ملف PDF لهذه المحاضرة.")
         elif text == "🎙 تسجيل المحاضرة":
             if lecture.get("audio_file_id"):
-                await update.message.reply_text("📤 جارِ إرسال التسجيل الصوتي...")
+                await update.message.reply_text("📤 جارِ إرسال التسجيل...")
+                file_id = lecture["audio_file_id"]
                 try:
-                    await context.bot.send_audio(chat_id=update.effective_chat.id, audio=lecture["audio_file_id"])
+                    await context.bot.send_audio(chat_id=update.effective_chat.id, audio=file_id)
                 except:
-                    await context.bot.send_voice(chat_id=update.effective_chat.id, voice=lecture["audio_file_id"])
+                    try:
+                        await context.bot.send_voice(chat_id=update.effective_chat.id, voice=file_id)
+                    except:
+                        try:
+                            await context.bot.send_document(chat_id=update.effective_chat.id, document=file_id)
+                        except:
+                            try:
+                                await context.bot.send_video(chat_id=update.effective_chat.id, video=file_id)
+                            except:
+                                await update.message.reply_text("⚠️ حدث خطأ أثناء إرسال التسجيل.")
             else:
                 await update.message.reply_text("⚠️ لم يتم رفع تسجيل صوتي لهذه المحاضرة.")
         return STUDENT_LECTURE
