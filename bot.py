@@ -197,7 +197,10 @@ BTN_DONE = "✅ انتهيت"
 async def admin_start(update: Update, context: ContextTypes.DEFAULT_TYPE) -> int:
     user = update.effective_user
     if not is_admin(user.username):
-        await update.message.reply_text("⛔️ عذراً، هذا الأمر مخصص للمشرفين فقط.")
+        if update.callback_query:
+            await update.callback_query.answer("⛔️ عذراً، هذا الأمر مخصص للمشرفين فقط.", show_alert=True)
+        else:
+            await update.message.reply_text("⛔️ عذراً، هذا الأمر مخصص للمشرفين فقط.")
         return ConversationHandler.END
 
     keyboard = [
@@ -209,7 +212,7 @@ async def admin_start(update: Update, context: ContextTypes.DEFAULT_TYPE) -> int
     ]
     reply_markup = InlineKeyboardMarkup(keyboard)
     
-    text = "🛠 *لوحة تحكم المشرف*\n\nاختر ما تريد القيام به:"
+    text = "🛠 <b>لوحة تحكم المشرف</b>\n\nاختر ما تريد القيام به:"
     
     if update.callback_query:
         await update.callback_query.answer()
@@ -254,7 +257,7 @@ async def show_modules_menu(query, context):
     keyboard.append([InlineKeyboardButton("➕ إضافة موديول جديد", callback_data="add_module")])
     keyboard.append([InlineKeyboardButton(BTN_BACK, callback_data="back_main")])
     
-    await query.edit_message_text("📁 *إدارة الموديولات*\n\nيمكنك إضافة موديول جديد أو حذف موديول حالي:", 
+    await query.edit_message_text("📁 <b>إدارة الموديولات</b>\n\nيمكنك إضافة موديول جديد أو حذف موديول حالي:", 
                                   reply_markup=InlineKeyboardMarkup(keyboard), parse_mode="HTML")
     return A_ADD_MODULE_NAME
 
@@ -335,7 +338,7 @@ async def pick_module_for_subject_cb(update: Update, context: ContextTypes.DEFAU
     keyboard.append([InlineKeyboardButton("➕ إضافة مادة جديدة", callback_data="add_subject")])
     keyboard.append([InlineKeyboardButton(BTN_BACK, callback_data="admin_subjects")])
     
-    await query.edit_message_text(f"📚 *إدارة مواد: {module['name']}*\n\nيمكنك إضافة أو حذف المواد:", 
+    await query.edit_message_text(f"📚 <b>إدارة مواد: {module['name']}</b>\n\nيمكنك إضافة أو حذف المواد:", 
                                   reply_markup=InlineKeyboardMarkup(keyboard), parse_mode="HTML")
     return A_ADD_SUBJECT_NAME
 
@@ -555,7 +558,7 @@ async def show_admins_menu(query, context):
     keyboard.append([InlineKeyboardButton("➕ إضافة مشرف جديد", callback_data="add_admin")])
     keyboard.append([InlineKeyboardButton(BTN_BACK, callback_data="back_main")])
     
-    await query.edit_message_text(f"👥 *إدارة المشرفين*\n\nالمشرف الأساسي: @{SUPER_ADMIN}\nالمشرفون الآخرون:", 
+    await query.edit_message_text(f"👥 <b>إدارة المشرفين</b>\n\nالمشرف الأساسي: @{SUPER_ADMIN}\nالمشرفون الآخرون:", 
                                   reply_markup=InlineKeyboardMarkup(keyboard), parse_mode="HTML")
     return A_WAIT_FOR_ADMIN_USERNAME
 
