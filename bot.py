@@ -529,6 +529,8 @@ async def manage_lectures_cb(update: Update, context: ContextTypes.DEFAULT_TYPE)
             del lecture[target_field]
             save_data(db)
         return await pick_subject_for_lecture_cb(update, context)
+        
+    return A_MANAGE_LECTURES
 
 async def receive_lecture_name(update: Update, context: ContextTypes.DEFAULT_TYPE) -> int:
     lec_name = update.message.text
