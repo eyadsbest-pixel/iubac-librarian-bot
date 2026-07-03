@@ -192,32 +192,6 @@
           "lectures": []
         }
       ]
-    },
-    {
-      "id": "7df7c42e",
-      "name": "Git الجهاز الهضمي",
-      "name_short": "Git الجهاز الهضمي",
-      "subjects": [
-        {
-          "id": "ba3c8010",
-          "name": "Anatomy",
-          "files": [],
-          "lectures": [
-            {
-              "id": "l1783121623",
-              "name": "Ok",
-              "pdf_file_id": "BQACAgQAAxkBAAPPakZD_qrAHBhglDnFU0wpyZYdAS4AAqodAALamNBQPGkYbFMPljE8BA",
-              "audio_file_id": "BAACAgQAAxkBAAIDqmpIR_8VzWDBTQNJfI3Riov8WbS3AAIyHQACrx_YUAgGUbhsPKdIPAQ"
-            }
-          ]
-        },
-        {
-          "id": "2360fcc0",
-          "name": "Physio",
-          "files": [],
-          "lectures": []
-        }
-      ]
     }
   ]
 }
