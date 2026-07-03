@@ -195,7 +195,7 @@
     },
     {
       "id": "510d8437",
-      "name": "CNS",
+      "name": "🧠 CNS - الجهاز العصبي المركزي",
       "name_short": "CNS",
       "subjects": [
         {
@@ -247,7 +247,7 @@
     },
     {
       "id": "4c08d923",
-      "name": "CVS",
+      "name": "🫀 CVS - الجهاز القلبي الوعائي",
       "name_short": "CVS",
       "subjects": [
         {
@@ -299,7 +299,7 @@
     },
     {
       "id": "f72c48a5",
-      "name": "RS",
+      "name": "🫁 RS - الجهاز التنفسي",
       "name_short": "RS",
       "subjects": [
         {
@@ -351,7 +351,7 @@
     },
     {
       "id": "7e8974bf",
-      "name": "GIT",
+      "name": "🍏 GIT - الجهاز الهضمي",
       "name_short": "GIT",
       "subjects": [
         {
@@ -403,7 +403,7 @@
     },
     {
       "id": "6722e709",
-      "name": "ENDO",
+      "name": "🧪 ENDO - جهاز الغدد الصماء",
       "name_short": "ENDO",
       "subjects": [
         {
@@ -455,7 +455,7 @@
     },
     {
       "id": "4fadbb47",
-      "name": "MSS",
+      "name": "🦴 MSS - الجهاز العضلي الهيكلي",
       "name_short": "MSS",
       "subjects": [
         {
