@@ -269,6 +269,9 @@ async def admin_modules_actions_cb(update: Update, context: ContextTypes.DEFAULT
     if data == "back_main":
         return await admin_start(update, context)
         
+    elif data == "admin_modules":
+        return await show_modules_menu(query, context)
+        
     elif data == "add_module":
         await query.edit_message_text("✏️ أرسل اسم الموديول الجديد الآن:\n(مثال: PNS - الجهاز العصبي الطّرفيّ)")
         return A_ADD_MODULE_NAME
@@ -569,6 +572,9 @@ async def admin_manage_admins_cb(update: Update, context: ContextTypes.DEFAULT_T
     
     if data == "back_main":
         return await admin_start(update, context)
+        
+    elif data == "admin_admins":
+        return await show_admins_menu(query, context)
         
     elif data == "add_admin":
         await query.edit_message_text("✏️ أرسل معرّف المشرف الجديد الآن:\n(مثال: @username)")
