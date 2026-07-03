@@ -192,6 +192,318 @@
           "lectures": []
         }
       ]
+    },
+    {
+      "id": "510d8437",
+      "name": "CNS",
+      "name_short": "CNS",
+      "subjects": [
+        {
+          "id": "38ca1651",
+          "name": "💫 Histology",
+          "lectures": []
+        },
+        {
+          "id": "98b1ce67",
+          "name": "💫 Microbiology",
+          "lectures": []
+        },
+        {
+          "id": "eee50c4e",
+          "name": "💫 Physiology",
+          "lectures": []
+        },
+        {
+          "id": "999452f1",
+          "name": "💫 Anatomy",
+          "lectures": []
+        },
+        {
+          "id": "38edbe18",
+          "name": "💫 Pharmacology",
+          "lectures": []
+        },
+        {
+          "id": "905aa58c",
+          "name": "💫 Biochemistry",
+          "lectures": []
+        },
+        {
+          "id": "7a5f83fe",
+          "name": "💫 Embryology",
+          "lectures": []
+        },
+        {
+          "id": "52d49587",
+          "name": "💫 Pathology",
+          "lectures": []
+        },
+        {
+          "id": "3aa47af8",
+          "name": "💫 Surgery & Medicine",
+          "lectures": []
+        }
+      ]
+    },
+    {
+      "id": "4c08d923",
+      "name": "CVS",
+      "name_short": "CVS",
+      "subjects": [
+        {
+          "id": "56d17140",
+          "name": "💫 Histology",
+          "lectures": []
+        },
+        {
+          "id": "e55b1efd",
+          "name": "💫 Microbiology",
+          "lectures": []
+        },
+        {
+          "id": "adca955c",
+          "name": "💫 Physiology",
+          "lectures": []
+        },
+        {
+          "id": "4eeb38d0",
+          "name": "💫 Anatomy",
+          "lectures": []
+        },
+        {
+          "id": "e9896ae6",
+          "name": "💫 Pharmacology",
+          "lectures": []
+        },
+        {
+          "id": "8bfca7db",
+          "name": "💫 Biochemistry",
+          "lectures": []
+        },
+        {
+          "id": "aa178191",
+          "name": "💫 Embryology",
+          "lectures": []
+        },
+        {
+          "id": "339b3c54",
+          "name": "💫 Pathology",
+          "lectures": []
+        },
+        {
+          "id": "e22a6fd3",
+          "name": "💫 Surgery & Medicine",
+          "lectures": []
+        }
+      ]
+    },
+    {
+      "id": "f72c48a5",
+      "name": "RS",
+      "name_short": "RS",
+      "subjects": [
+        {
+          "id": "e6b1de75",
+          "name": "💫 Histology",
+          "lectures": []
+        },
+        {
+          "id": "0f2cc891",
+          "name": "💫 Microbiology",
+          "lectures": []
+        },
+        {
+          "id": "6234e888",
+          "name": "💫 Physiology",
+          "lectures": []
+        },
+        {
+          "id": "ed159ec4",
+          "name": "💫 Anatomy",
+          "lectures": []
+        },
+        {
+          "id": "e4a20157",
+          "name": "💫 Pharmacology",
+          "lectures": []
+        },
+        {
+          "id": "bed55df6",
+          "name": "💫 Biochemistry",
+          "lectures": []
+        },
+        {
+          "id": "d756b855",
+          "name": "💫 Embryology",
+          "lectures": []
+        },
+        {
+          "id": "30aac8ad",
+          "name": "💫 Pathology",
+          "lectures": []
+        },
+        {
+          "id": "0693a441",
+          "name": "💫 Surgery & Medicine",
+          "lectures": []
+        }
+      ]
+    },
+    {
+      "id": "7e8974bf",
+      "name": "GIT",
+      "name_short": "GIT",
+      "subjects": [
+        {
+          "id": "815a191d",
+          "name": "💫 Histology",
+          "lectures": []
+        },
+        {
+          "id": "92087652",
+          "name": "💫 Microbiology",
+          "lectures": []
+        },
+        {
+          "id": "ed5d02a0",
+          "name": "💫 Physiology",
+          "lectures": []
+        },
+        {
+          "id": "db85e0aa",
+          "name": "💫 Anatomy",
+          "lectures": []
+        },
+        {
+          "id": "4d0998dc",
+          "name": "💫 Pharmacology",
+          "lectures": []
+        },
+        {
+          "id": "ed4eda31",
+          "name": "💫 Biochemistry",
+          "lectures": []
+        },
+        {
+          "id": "b07e0ed6",
+          "name": "💫 Embryology",
+          "lectures": []
+        },
+        {
+          "id": "329d3a35",
+          "name": "💫 Pathology",
+          "lectures": []
+        },
+        {
+          "id": "51a95d93",
+          "name": "💫 Surgery & Medicine",
+          "lectures": []
+        }
+      ]
+    },
+    {
+      "id": "6722e709",
+      "name": "ENDO",
+      "name_short": "ENDO",
+      "subjects": [
+        {
+          "id": "1f216eeb",
+          "name": "💫 Histology",
+          "lectures": []
+        },
+        {
+          "id": "db2b2cf1",
+          "name": "💫 Microbiology",
+          "lectures": []
+        },
+        {
+          "id": "58519d42",
+          "name": "💫 Physiology",
+          "lectures": []
+        },
+        {
+          "id": "8b79ad52",
+          "name": "💫 Anatomy",
+          "lectures": []
+        },
+        {
+          "id": "1cd6b857",
+          "name": "💫 Pharmacology",
+          "lectures": []
+        },
+        {
+          "id": "f2db9f63",
+          "name": "💫 Biochemistry",
+          "lectures": []
+        },
+        {
+          "id": "790d835a",
+          "name": "💫 Embryology",
+          "lectures": []
+        },
+        {
+          "id": "b6caa220",
+          "name": "💫 Pathology",
+          "lectures": []
+        },
+        {
+          "id": "9e9d1465",
+          "name": "💫 Surgery & Medicine",
+          "lectures": []
+        }
+      ]
+    },
+    {
+      "id": "4fadbb47",
+      "name": "MSS",
+      "name_short": "MSS",
+      "subjects": [
+        {
+          "id": "067f3168",
+          "name": "💫 Histology",
+          "lectures": []
+        },
+        {
+          "id": "48935e84",
+          "name": "💫 Microbiology",
+          "lectures": []
+        },
+        {
+          "id": "32b94591",
+          "name": "💫 Physiology",
+          "lectures": []
+        },
+        {
+          "id": "1d7e01ba",
+          "name": "💫 Anatomy",
+          "lectures": []
+        },
+        {
+          "id": "c63604d4",
+          "name": "💫 Pharmacology",
+          "lectures": []
+        },
+        {
+          "id": "9bd6352b",
+          "name": "💫 Biochemistry",
+          "lectures": []
+        },
+        {
+          "id": "29c4148c",
+          "name": "💫 Embryology",
+          "lectures": []
+        },
+        {
+          "id": "291d0fbc",
+          "name": "💫 Pathology",
+          "lectures": []
+        },
+        {
+          "id": "3da134cd",
+          "name": "💫 Surgery & Medicine",
+          "lectures": []
+        }
+      ]
     }
   ]
 }
