@@ -371,6 +371,9 @@ async def admin_subjects_actions_cb(update: Update, context: ContextTypes.DEFAUL
         query.data = f"modsubj_{mod_id}"
         return await pick_module_for_subject_cb(update, context)
 
+    elif data.startswith("modsubj_"):
+        return await pick_module_for_subject_cb(update, context)
+
     return A_ADD_SUBJECT_NAME
 
 async def receive_subject_name(update: Update, context: ContextTypes.DEFAULT_TYPE) -> int:
