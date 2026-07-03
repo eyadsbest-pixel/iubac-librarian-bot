@@ -197,7 +197,13 @@
       "id": "7df7c42e",
       "name": "Git الجهاز الهضمي",
       "name_short": "Git الجهاز الهضمي",
-      "subjects": []
+      "subjects": [
+        {
+          "id": "ba3c8010",
+          "name": "Anatomy",
+          "files": []
+        }
+      ]
     }
   ]
 }
