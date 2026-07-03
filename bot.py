@@ -53,14 +53,89 @@ DATA_DIR.mkdir(exist_ok=True)
 LECTURES_FILE = DATA_DIR / "lectures.json"
 ADMINS_FILE = DATA_DIR / "admins.json"
 
-# Ensure data files exist
-if not LECTURES_FILE.exists():
-    with open(LECTURES_FILE, "w", encoding="utf-8") as f:
-        json.dump({"channel": "@iubac4medicin", "modules": []}, f, ensure_ascii=False, indent=2)
+# ── GitHub-backed Storage ────────────────────────────────────────────────────
+GITHUB_TOKEN = os.getenv("GITHUB_TOKEN")
+GITHUB_REPO = os.getenv("GITHUB_REPO")  # e.g. "eyadsbest-pixel/iubac-librarian-bot"
 
-if not ADMINS_FILE.exists():
-    with open(ADMINS_FILE, "w", encoding="utf-8") as f:
-        json.dump({"admin_usernames": []}, f, ensure_ascii=False, indent=2)
+def _github_headers():
+    return {
+        "Authorization": f"token {GITHUB_TOKEN}",
+        "Accept": "application/vnd.github.v3+json"
+    }
+
+def _github_download(file_path: str):
+    """Download a file from the GitHub repo."""
+    import urllib.request, base64
+    url = f"https://api.github.com/repos/{GITHUB_REPO}/contents/{file_path}"
+    req = urllib.request.Request(url, headers=_github_headers())
+    try:
+        with urllib.request.urlopen(req, timeout=15) as resp:
+            data = json.loads(resp.read().decode())
+            content = base64.b64decode(data["content"]).decode("utf-8")
+            return json.loads(content), data["sha"]
+    except Exception as e:
+        logger.warning(f"GitHub download failed for {file_path}: {e}")
+        return None, None
+
+def _github_upload(file_path: str, data_dict: dict, message: str):
+    """Upload/update a file in the GitHub repo."""
+    import urllib.request, base64
+    url = f"https://api.github.com/repos/{GITHUB_REPO}/contents/{file_path}"
+    
+    # Get current SHA first
+    _, sha = _github_download(file_path)
+    
+    content_bytes = json.dumps(data_dict, ensure_ascii=False, indent=2).encode("utf-8")
+    body = {
+        "message": message,
+        "content": base64.b64encode(content_bytes).decode("ascii"),
+    }
+    if sha:
+        body["sha"] = sha
+    
+    body_bytes = json.dumps(body).encode("utf-8")
+    req = urllib.request.Request(url, data=body_bytes, headers=_github_headers(), method="PUT")
+    try:
+        urllib.request.urlopen(req, timeout=15)
+        logger.info(f"Saved {file_path} to GitHub.")
+    except Exception as e:
+        logger.error(f"GitHub upload failed for {file_path}: {e}")
+
+def _init_data_files():
+    """On startup, download data from GitHub if available, otherwise use local/defaults."""
+    default_lectures = {"channel": "@iubac4medicin", "modules": []}
+    default_admins = {"admin_usernames": []}
+    
+    if GITHUB_TOKEN and GITHUB_REPO:
+        logger.info("GitHub storage enabled. Downloading data...")
+        
+        lec_data, _ = _github_download("data/lectures.json")
+        if lec_data:
+            with open(LECTURES_FILE, "w", encoding="utf-8") as f:
+                json.dump(lec_data, f, ensure_ascii=False, indent=2)
+            logger.info("Downloaded lectures.json from GitHub.")
+        elif not LECTURES_FILE.exists():
+            with open(LECTURES_FILE, "w", encoding="utf-8") as f:
+                json.dump(default_lectures, f, ensure_ascii=False, indent=2)
+        
+        adm_data, _ = _github_download("data/admins.json")
+        if adm_data:
+            with open(ADMINS_FILE, "w", encoding="utf-8") as f:
+                json.dump(adm_data, f, ensure_ascii=False, indent=2)
+            logger.info("Downloaded admins.json from GitHub.")
+        elif not ADMINS_FILE.exists():
+            with open(ADMINS_FILE, "w", encoding="utf-8") as f:
+                json.dump(default_admins, f, ensure_ascii=False, indent=2)
+    else:
+        logger.info("GitHub storage not configured. Using local files only.")
+        if not LECTURES_FILE.exists():
+            with open(LECTURES_FILE, "w", encoding="utf-8") as f:
+                json.dump(default_lectures, f, ensure_ascii=False, indent=2)
+        if not ADMINS_FILE.exists():
+            with open(ADMINS_FILE, "w", encoding="utf-8") as f:
+                json.dump(default_admins, f, ensure_ascii=False, indent=2)
+
+_init_data_files()
 
 def load_data():
     with open(LECTURES_FILE, "r", encoding="utf-8") as f:
@@ -69,14 +144,22 @@ def load_data():
 def save_data(data):
     with open(LECTURES_FILE, "w", encoding="utf-8") as f:
         json.dump(data, f, ensure_ascii=False, indent=2)
+    # Also push to GitHub in background
+    if GITHUB_TOKEN and GITHUB_REPO:
+        t = threading.Thread(target=_github_upload, args=("data/lectures.json", data, "Update lectures data"), daemon=True)
+        t.start()
 
 def load_admins():
     with open(ADMINS_FILE, "r", encoding="utf-8") as f:
         return json.load(f)["admin_usernames"]
 
 def save_admins(admins_list):
+    data = {"admin_usernames": admins_list}
     with open(ADMINS_FILE, "w", encoding="utf-8") as f:
-        json.dump({"admin_usernames": admins_list}, f, ensure_ascii=False, indent=2)
+        json.dump(data, f, ensure_ascii=False, indent=2)
+    if GITHUB_TOKEN and GITHUB_REPO:
+        t = threading.Thread(target=_github_upload, args=("data/admins.json", data, "Update admins data"), daemon=True)
+        t.start()
 
 def is_admin(username: str) -> bool:
     if not username:
