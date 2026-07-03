@@ -634,23 +634,47 @@ async def student_lecture_handler(update: Update, context: ContextTypes.DEFAULT_
     text = update.message.text
     
     if text == "🔙 Go Back":
-        # Simulate back to subjects
-        mod_id = context.user_data.get("selected_student_module")
-        db = load_data()
-        module = next((m for m in db["modules"] if m["id"] == mod_id), None)
-        keyboard = []
-        row = []
-        for s in module["subjects"]:
-            row.append(s['name'])
-            if len(row) == 2:
+        # Check if we are in the file-choice sub-menu or the lecture list
+        if context.user_data.get("in_lecture_choice"):
+            # Go back to the lecture list for this subject
+            context.user_data["in_lecture_choice"] = False
+            subj_id = context.user_data.get("selected_student_subject")
+            mod_id = context.user_data.get("selected_student_module")
+            db = load_data()
+            module = next((m for m in db["modules"] if m["id"] == mod_id), None)
+            subject = next((s for s in module["subjects"] if s["id"] == subj_id), None)
+            keyboard = []
+            row = []
+            for l in subject.get("lectures", []):
+                row.append(l['name'])
+                if len(row) == 2:
+                    keyboard.append(row)
+                    row = []
+            if row:
                 keyboard.append(row)
-                row = []
-        if row:
-            keyboard.append(row)
-        keyboard.append(["🔙 Go Back"])
-        reply_markup = ReplyKeyboardMarkup(keyboard, resize_keyboard=True)
-        await update.message.reply_text(f"📋 <b>{module['name']}</b>\n\n🔽 اختر المادّة:", reply_markup=reply_markup, parse_mode="HTML")
-        return STUDENT_SUBJECT
+            keyboard.append(["🔙 Go Back"])
+            reply_markup = ReplyKeyboardMarkup(keyboard, resize_keyboard=True)
+            await update.message.reply_text(f"📚 <b>{subject['name']}</b>\n\n🔽 اختر المحاضرة:", reply_markup=reply_markup, parse_mode="HTML")
+            return STUDENT_LECTURE
+        else:
+            # Go back to the subject list
+            context.user_data["in_lecture_choice"] = False
+            mod_id = context.user_data.get("selected_student_module")
+            db = load_data()
+            module = next((m for m in db["modules"] if m["id"] == mod_id), None)
+            keyboard = []
+            row = []
+            for s in module["subjects"]:
+                row.append(s['name'])
+                if len(row) == 2:
+                    keyboard.append(row)
+                    row = []
+            if row:
+                keyboard.append(row)
+            keyboard.append(["🔙 Go Back"])
+            reply_markup = ReplyKeyboardMarkup(keyboard, resize_keyboard=True)
+            await update.message.reply_text(f"📋 <b>{module['name']}</b>\n\n🔽 اختر المادّة:", reply_markup=reply_markup, parse_mode="HTML")
+            return STUDENT_SUBJECT
         
     if text in ["📄 ملف المحاضرة", "🎙 تسجيل المحاضرة"]:
         # Delivery
@@ -671,7 +695,6 @@ async def student_lecture_handler(update: Update, context: ContextTypes.DEFAULT_
         elif text == "🎙 تسجيل المحاضرة":
             if lecture.get("audio_file_id"):
                 await update.message.reply_text("📤 جارِ إرسال التسجيل الصوتي...")
-                # It could be audio or voice, we just try audio, if it fails, voice
                 try:
                     await context.bot.send_audio(chat_id=update.effective_chat.id, audio=lecture["audio_file_id"])
                 except:
@@ -693,6 +716,7 @@ async def student_lecture_handler(update: Update, context: ContextTypes.DEFAULT_
         return STUDENT_LECTURE
         
     context.user_data["selected_student_lecture"] = lecture["id"]
+    context.user_data["in_lecture_choice"] = True
     
     keyboard = [
         ["📄 ملف المحاضرة", "🎙 تسجيل المحاضرة"],
