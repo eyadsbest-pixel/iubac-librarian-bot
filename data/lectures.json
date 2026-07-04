@@ -35,7 +35,12 @@
           "id": "pns_microbiology",
           "name": "💫 Microbiology",
           "message_id": 2427,
-          "lectures": []
+          "lectures": [
+            {
+              "id": "l1783124209",
+              "name": "\"1\"Enteroviruses"
+            }
+          ]
         },
         {
           "id": "pns_physiology",
