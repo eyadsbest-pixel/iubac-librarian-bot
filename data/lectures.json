@@ -66,7 +66,12 @@
           "id": "pns_physiology",
           "name": "💫 Physiology",
           "message_id": 2428,
-          "lectures": []
+          "lectures": [
+            {
+              "id": "l1783176906",
+              "name": "\" Physiology of PNS\nالرّيكورد\nللدّكتورة فاطمة"
+            }
+          ]
         },
         {
           "id": "pns_anatomy",
