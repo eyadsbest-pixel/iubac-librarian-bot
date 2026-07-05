@@ -1052,7 +1052,12 @@
         {
           "id": "e4a20157",
           "name": "💫 Pharmacology",
-          "lectures": []
+          "lectures": [
+            {
+              "id": "l1783256198",
+              "name": "“1” Treatment of Bronchial Asthma"
+            }
+          ]
         },
         {
           "id": "bed55df6",
