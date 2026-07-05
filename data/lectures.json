@@ -785,7 +785,12 @@
         {
           "id": "56d17140",
           "name": "💫 Histology",
-          "lectures": []
+          "lectures": [
+            {
+              "id": "l1783259878",
+              "name": "“1” Histology of Heart"
+            }
+          ]
         },
         {
           "id": "e55b1efd",
