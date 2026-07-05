@@ -624,6 +624,14 @@ async def pick_subject_for_lecture_cb(update: Update, context: ContextTypes.DEFA
             InlineKeyboardButton("➕ ملف", callback_data=f"addpdf_{l['id']}"),
             InlineKeyboardButton("🗑 ملف", callback_data=f"delpdf_{l['id']}")
         ])
+        keyboard.append([
+            InlineKeyboardButton("➕ ملخص", callback_data=f"addsum_{l['id']}"),
+            InlineKeyboardButton("🗑 ملخص", callback_data=f"delsum_{l['id']}")
+        ])
+        keyboard.append([
+            InlineKeyboardButton("➕ تبييض", callback_data=f"addnot_{l['id']}"),
+            InlineKeyboardButton("🗑 تبييض", callback_data=f"delnot_{l['id']}")
+        ])
         keyboard.append([InlineKeyboardButton("🗑 حذف المحاضرة كاملة", callback_data=f"dellec_{l['id']}")])
         
     keyboard.append([InlineKeyboardButton("➕ إضافة محاضرة جديدة", callback_data="add_lecture")])
@@ -659,17 +667,30 @@ async def manage_lectures_cb(update: Update, context: ContextTypes.DEFAULT_TYPE)
                 save_data(db)
         return await pick_subject_for_lecture_cb(update, context)
         
-    elif data.startswith("addrec_") or data.startswith("addpdf_"):
+    elif data.startswith("addrec_") or data.startswith("addpdf_") or data.startswith("addsum_") or data.startswith("addnot_"):
         action, lec_id = data.split("_", 1)
         context.user_data["current_lec_id"] = lec_id
-        context.user_data["upload_target"] = "audio_file_id" if action == "addrec" else "pdf_file_id"
         
-        msg = "أرسل التسجيل الآن (أي نوع ملف):" if action == "addrec" else "أرسل ملف الـ PDF الآن:"
+        target_map = {
+            "addrec": "audio_file_id",
+            "addpdf": "pdf_file_id",
+            "addsum": "summary_file_id",
+            "addnot": "notes_file_id"
+        }
+        context.user_data["upload_target"] = target_map[action]
+        
+        msg_map = {
+            "addrec": "أرسل التسجيل الآن (أي نوع ملف):",
+            "addpdf": "أرسل ملف الـ PDF الآن:",
+            "addsum": "أرسل ملف الملخص الآن:",
+            "addnot": "أرسل ملف التبييض الآن:"
+        }
+        msg = msg_map[action]
         markup = ReplyKeyboardMarkup([[BTN_DONE]], resize_keyboard=True)
         await query.message.reply_text(f"👉 {msg}\nعند الانتهاء، اضغط على '{BTN_DONE}'.", reply_markup=markup)
         return A_WAIT_FOR_LECTURE_FILE
         
-    elif data.startswith("delrec_") or data.startswith("delpdf_"):
+    elif data.startswith("delrec_") or data.startswith("delpdf_") or data.startswith("delsum_") or data.startswith("delnot_"):
         action, lec_id = data.split("_", 1)
         db = load_data()
         mod_id = context.user_data["upload_mod_id"]
@@ -678,10 +699,16 @@ async def manage_lectures_cb(update: Update, context: ContextTypes.DEFAULT_TYPE)
         subject = next((s for s in module["subjects"] if s["id"] == subj_id), None)
         lecture = next((l for l in subject["lectures"] if l["id"] == lec_id), None)
         
-        target_field = "audio_file_id" if action == "delrec" else "pdf_file_id"
+        target_map = {
+            "delrec": "audio_file_id",
+            "delpdf": "pdf_file_id",
+            "delsum": "summary_file_id",
+            "delnot": "notes_file_id"
+        }
+        target_field = target_map[action]
         if lecture and target_field in lecture:
             # We save the file reference in the trash
-            file_type = "audio" if action == "delrec" else "pdf"
+            file_type = action[3:]
             trash_item(f"file_{file_type}", lecture[target_field], parent_id=lec_id)
             del lecture[target_field]
             save_data(db)
@@ -746,6 +773,14 @@ async def receive_lecture_file(update: Update, context: ContextTypes.DEFAULT_TYP
                 InlineKeyboardButton("➕ ملف", callback_data=f"addpdf_{l['id']}"),
                 InlineKeyboardButton("🗑 ملف", callback_data=f"delpdf_{l['id']}")
             ])
+            keyboard.append([
+                InlineKeyboardButton("➕ ملخص", callback_data=f"addsum_{l['id']}"),
+                InlineKeyboardButton("🗑 ملخص", callback_data=f"delsum_{l['id']}")
+            ])
+            keyboard.append([
+                InlineKeyboardButton("➕ تبييض", callback_data=f"addnot_{l['id']}"),
+                InlineKeyboardButton("🗑 تبييض", callback_data=f"delnot_{l['id']}")
+            ])
             keyboard.append([InlineKeyboardButton("🗑 حذف المحاضرة كاملة", callback_data=f"dellec_{l['id']}")])
             
         keyboard.append([InlineKeyboardButton("➕ إضافة محاضرة جديدة", callback_data="add_lecture")])
@@ -795,7 +830,13 @@ async def receive_lecture_file(update: Update, context: ContextTypes.DEFAULT_TYP
     if target:
         lecture[target] = file_id
         save_data(db)
-        msg_type = "التسجيل" if target == "audio_file_id" else "ملف الـ PDF"
+        target_msg_map = {
+            "audio_file_id": "التسجيل",
+            "pdf_file_id": "ملف الـ PDF",
+            "summary_file_id": "الملخص",
+            "notes_file_id": "التبييض"
+        }
+        msg_type = target_msg_map.get(target, "الملف")
         await update.message.reply_text(f"✅ تم حفظ {msg_type} للمحاضرة بنجاح.")
     else:
         if update.message.document:
@@ -1036,7 +1077,7 @@ async def student_lecture_handler(update: Update, context: ContextTypes.DEFAULT_
             await update.message.reply_text(f"📋 <b>{module['name']}</b>\n\n🔽 اختر المادّة:", reply_markup=reply_markup, parse_mode="HTML")
             return STUDENT_SUBJECT
         
-    if text in ["📄 ملف المحاضرة", "🎙 تسجيل المحاضرة"]:
+    if text in ["📄 ملف المحاضرة", "🎙 تسجيل المحاضرة", "📝 ملخصات", "✍️ تبييضات"]:
         # Delivery
         lec_id = context.user_data.get("selected_student_lecture")
         subj_id = context.user_data.get("selected_student_subject")
@@ -1071,6 +1112,18 @@ async def student_lecture_handler(update: Update, context: ContextTypes.DEFAULT_
                                 await update.message.reply_text("⚠️ حدث خطأ أثناء إرسال التسجيل.")
             else:
                 await update.message.reply_text("⚠️ لم يتم رفع تسجيل صوتي لهذه المحاضرة.")
+        elif text == "📝 ملخصات":
+            if lecture.get("summary_file_id"):
+                await update.message.reply_text("📤 جارِ إرسال الملخص...")
+                await context.bot.send_document(chat_id=update.effective_chat.id, document=lecture["summary_file_id"])
+            else:
+                await update.message.reply_text("⚠️ لم يتم رفع ملخص لهذه المحاضرة.")
+        elif text == "✍️ تبييضات":
+            if lecture.get("notes_file_id"):
+                await update.message.reply_text("📤 جارِ إرسال التبييض...")
+                await context.bot.send_document(chat_id=update.effective_chat.id, document=lecture["notes_file_id"])
+            else:
+                await update.message.reply_text("⚠️ لم يتم رفع تبييض لهذه المحاضرة.")
         return STUDENT_LECTURE
         
     # Otherwise it's a lecture name selection
@@ -1090,6 +1143,7 @@ async def student_lecture_handler(update: Update, context: ContextTypes.DEFAULT_
     
     keyboard = [
         ["📄 ملف المحاضرة", "🎙 تسجيل المحاضرة"],
+        ["📝 ملخصات", "✍️ تبييضات"],
         ["🔙 Go Back"]
     ]
     reply_markup = ReplyKeyboardMarkup(keyboard, resize_keyboard=True)
