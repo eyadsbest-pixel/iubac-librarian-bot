@@ -1184,15 +1184,30 @@ def main() -> None:
     app.add_handler(CommandHandler("start", start_command))
     
     async def global_fallback(update: Update, context: ContextTypes.DEFAULT_TYPE):
-        if update.message and update.message.text:
+        if update.message and update.message.text and update.effective_chat.type == "private":
             text = update.message.text
-            if text in ["🔙 القائمة الرئيسية", "🔙 Go Back", "📄 ملف المحاضرة", "🎙 تسجيل المحاضرة"] or len(text) > 2:
+            known_buttons = [
+                "🔙 القائمة الرئيسية", "🔙 Go Back", "📄 ملف المحاضرة", "🎙 تسجيل المحاضرة",
+                "✅ انتهيت", "➕ إضافة محاضرة أخرى"
+            ]
+            if text in known_buttons:
                 await update.message.reply_text("⏳ عذراً، انتهت جلستك أو تم تحديث البوت.\nيرجى الضغط على /menu للبدء من جديد.", reply_markup=ReplyKeyboardRemove())
                 
-    app.add_handler(MessageHandler(filters.TEXT & ~filters.COMMAND, global_fallback))
+    app.add_handler(MessageHandler(filters.TEXT & ~filters.COMMAND & filters.ChatType.PRIVATE, global_fallback))
 
+    import telegram.error
+    import time
     logger.info("Bot is running! Press Ctrl+C to stop.")
-    app.run_polling(allowed_updates=Update.ALL_TYPES, drop_pending_updates=True)
+    while True:
+        try:
+            app.run_polling(allowed_updates=Update.ALL_TYPES, drop_pending_updates=True)
+            break
+        except telegram.error.Conflict:
+            logger.warning("Conflict error (another instance is running). Retrying in 5 seconds...")
+            time.sleep(5)
+        except Exception as e:
+            logger.error(f"Polling error: {e}")
+            time.sleep(5)
 
 if __name__ == "__main__":
     main()
