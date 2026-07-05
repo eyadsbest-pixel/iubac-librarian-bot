@@ -1,5 +1,15 @@
 [
   {
+    "trash_id": "418f5f3b",
+    "type": "lecture",
+    "parent_id": "pns_histology",
+    "data": {
+      "id": "l1783280427",
+      "name": "H"
+    },
+    "deleted_at": 1783280443
+  },
+  {
     "trash_id": "5abf859b",
     "type": "subject",
     "parent_id": "f72c48a5",
