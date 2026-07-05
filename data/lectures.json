@@ -418,8 +418,11 @@
             },
             {
               "id": "l1783239246",
-              "name": "Salmonella & Brucellosis",
-              "audio_file_id": "BQACAgQAAxkBAAIOtGpKElZlax9nbzpnWNpXDaWz1hMrAAKRIgACaj3ZUuHhMY8DtaJ4PAQ"
+              "name": "Salmonella & Brucellosis"
+            },
+            {
+              "id": "l1783239293",
+              "name": "Visceral Leishmaniasis & African Trypanosomiasis"
             }
           ]
         },
