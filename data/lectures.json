@@ -1234,7 +1234,12 @@
           "id": "e828eeb5",
           "name": "Archive",
           "files": [],
-          "lectures": []
+          "lectures": [
+            {
+              "id": "l1783259659",
+              "name": "الأرشيف كامل"
+            }
+          ]
         }
       ]
     },
