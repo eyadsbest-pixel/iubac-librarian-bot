@@ -1385,7 +1385,12 @@
           "id": "a99ce99b",
           "name": "Microbiology Lab 🧪",
           "files": [],
-          "lectures": []
+          "lectures": [
+            {
+              "id": "l1783290364",
+              "name": "Lab \"1&2\" Bacterial & Parasitic Infections"
+            }
+          ]
         }
       ]
     },
