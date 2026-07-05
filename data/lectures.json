@@ -669,7 +669,12 @@
         {
           "id": "e6b1de75",
           "name": "💫 Histology",
-          "lectures": []
+          "lectures": [
+            {
+              "id": "l1783243803",
+              "name": "Histology of Respiratory Tract"
+            }
+          ]
         },
         {
           "id": "0f2cc891",
