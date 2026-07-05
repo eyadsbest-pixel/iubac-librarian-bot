@@ -1150,6 +1150,14 @@ def main() -> None:
     app.add_handler(admin_conv_handler)
     app.add_handler(user_conv_handler)
     app.add_handler(CommandHandler("start", start_command))
+    
+    async def global_fallback(update: Update, context: ContextTypes.DEFAULT_TYPE):
+        if update.message and update.message.text:
+            text = update.message.text
+            if text in ["🔙 القائمة الرئيسية", "🔙 Go Back", "📄 ملف المحاضرة", "🎙 تسجيل المحاضرة"] or len(text) > 2:
+                await update.message.reply_text("⏳ عذراً، انتهت جلستك أو تم تحديث البوت.\nيرجى الضغط على /menu للبدء من جديد.", reply_markup=ReplyKeyboardRemove())
+                
+    app.add_handler(MessageHandler(filters.TEXT & ~filters.COMMAND, global_fallback))
 
     logger.info("Bot is running! Press Ctrl+C to stop.")
     app.run_polling(allowed_updates=Update.ALL_TYPES, drop_pending_updates=True)
