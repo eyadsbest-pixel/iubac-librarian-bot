@@ -133,7 +133,12 @@
           "id": "pns_anatomy",
           "name": "💫 Anatomy",
           "message_id": 2429,
-          "lectures": []
+          "lectures": [
+            {
+              "id": "l1783221023",
+              "name": "\"1&2\"Trigeminal Nerve"
+            }
+          ]
         },
         {
           "id": "pns_pharmacology",
