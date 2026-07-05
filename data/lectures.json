@@ -920,11 +920,6 @@
           "lectures": []
         },
         {
-          "id": "adca955c",
-          "name": "💫 Physiology",
-          "lectures": []
-        },
-        {
           "id": "4ac0b172",
           "name": "💫 Physiology 1",
           "files": []
@@ -967,7 +962,8 @@
         {
           "id": "72bb12ef",
           "name": "💫 Archive",
-          "files": []
+          "files": [],
+          "lectures": []
         }
       ]
     },
