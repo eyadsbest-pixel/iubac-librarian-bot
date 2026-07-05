@@ -948,7 +948,12 @@
         {
           "id": "ed159ec4",
           "name": "💫 Anatomy",
-          "lectures": []
+          "lectures": [
+            {
+              "id": "l1783248073",
+              "name": "“1” Nose & Paranasal Sinuses"
+            }
+          ]
         },
         {
           "id": "e4a20157",
