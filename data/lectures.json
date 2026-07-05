@@ -1094,7 +1094,12 @@
         {
           "id": "bed55df6",
           "name": "💫 Biochemistry",
-          "lectures": []
+          "lectures": [
+            {
+              "id": "l1783256821",
+              "name": "“1” Buffer System"
+            }
+          ]
         },
         {
           "id": "d756b855",
