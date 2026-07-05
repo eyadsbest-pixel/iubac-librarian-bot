@@ -52,6 +52,7 @@ DATA_DIR = Path("data")
 DATA_DIR.mkdir(exist_ok=True)
 LECTURES_FILE = DATA_DIR / "lectures.json"
 ADMINS_FILE = DATA_DIR / "admins.json"
+TRASH_FILE = DATA_DIR / "trash.json"
 
 # ── GitHub-backed Storage ────────────────────────────────────────────────────
 GITHUB_TOKEN = os.getenv("GITHUB_TOKEN")
@@ -126,6 +127,15 @@ def _init_data_files():
         elif not ADMINS_FILE.exists():
             with open(ADMINS_FILE, "w", encoding="utf-8") as f:
                 json.dump(default_admins, f, ensure_ascii=False, indent=2)
+                
+        trash_data, _ = _github_download("data/trash.json")
+        if trash_data:
+            with open(TRASH_FILE, "w", encoding="utf-8") as f:
+                json.dump(trash_data, f, ensure_ascii=False, indent=2)
+            logger.info("Downloaded trash.json from GitHub.")
+        elif not TRASH_FILE.exists():
+            with open(TRASH_FILE, "w", encoding="utf-8") as f:
+                json.dump([], f, ensure_ascii=False, indent=2)
     else:
         logger.info("GitHub storage not configured. Using local files only.")
         if not LECTURES_FILE.exists():
@@ -134,6 +144,9 @@ def _init_data_files():
         if not ADMINS_FILE.exists():
             with open(ADMINS_FILE, "w", encoding="utf-8") as f:
                 json.dump(default_admins, f, ensure_ascii=False, indent=2)
+        if not TRASH_FILE.exists():
+            with open(TRASH_FILE, "w", encoding="utf-8") as f:
+                json.dump([], f, ensure_ascii=False, indent=2)
 
 _init_data_files()
 
@@ -161,6 +174,30 @@ def save_admins(admins_list):
         t = threading.Thread(target=_github_upload, args=("data/admins.json", data, "Update admins data"), daemon=True)
         t.start()
 
+def load_trash():
+    if not TRASH_FILE.exists():
+        return []
+    with open(TRASH_FILE, "r", encoding="utf-8") as f:
+        return json.load(f)
+
+def save_trash(data):
+    with open(TRASH_FILE, "w", encoding="utf-8") as f:
+        json.dump(data, f, ensure_ascii=False, indent=2)
+    if GITHUB_TOKEN and GITHUB_REPO:
+        t = threading.Thread(target=_github_upload, args=("data/trash.json", data, "Update trash data"), daemon=True)
+        t.start()
+
+def trash_item(item_type, data, parent_id=None):
+    trash = load_trash()
+    trash.insert(0, {
+        "trash_id": str(uuid.uuid4())[:8],
+        "type": item_type,
+        "parent_id": parent_id,
+        "data": data,
+        "deleted_at": int(time.time())
+    })
+    save_trash(trash)
+
 def is_admin(username: str) -> bool:
     if not username:
         return False
@@ -186,6 +223,7 @@ A_WAIT_FOR_LECTURE_NAME = 17
 A_WAIT_FOR_LECTURE_FILE = 18
 A_MANAGE_ADMINS = 19
 A_WAIT_FOR_ADMIN_USERNAME = 20
+A_MANAGE_TRASH = 21
 
 STUDENT_LECTURE = 3
 
@@ -208,6 +246,7 @@ async def admin_start(update: Update, context: ContextTypes.DEFAULT_TYPE) -> int
         [InlineKeyboardButton("📚 إدارة المواد (Subjects)", callback_data="admin_subjects")],
         [InlineKeyboardButton("📝 إدارة المحاضرات (Lectures)", callback_data="admin_lectures")],
         [InlineKeyboardButton("👥 إدارة المشرفين", callback_data="admin_admins")],
+        [InlineKeyboardButton("🗑 سلة المحذوفات", callback_data="admin_trash")],
         [InlineKeyboardButton("❌ إغلاق لوحة التحكم", callback_data="admin_close")]
     ]
     reply_markup = InlineKeyboardMarkup(keyboard)
@@ -244,8 +283,114 @@ async def admin_main_cb(update: Update, context: ContextTypes.DEFAULT_TYPE) -> i
         
     elif data == "admin_admins":
         return await show_admins_menu(query, context)
+        
+    elif data == "admin_trash":
+        return await show_trash_menu(query, context)
 
     return A_MAIN
+
+# -- Manage Trash --
+async def show_trash_menu(query, context):
+    trash = load_trash()
+    keyboard = []
+    
+    # Show last 10 items to avoid payload too large
+    for t in trash[:10]:
+        t_type = t["type"]
+        t_id = t["trash_id"]
+        if t_type == "module":
+            name = f"موديول: {t['data']['name']}"
+        elif t_type == "subject":
+            name = f"مادة: {t['data']['name']}"
+        elif t_type == "lecture":
+            name = f"محاضرة: {t['data']['name']}"
+        else:
+            name = f"ملف: {t_type}"
+            
+        keyboard.append([
+            InlineKeyboardButton(f"♻️ استعادة {name}", callback_data=f"restore_{t_id}")
+        ])
+        keyboard.append([
+            InlineKeyboardButton(f"❌ حذف نهائي {name}", callback_data=f"perma_{t_id}")
+        ])
+        
+    keyboard.append([InlineKeyboardButton(BTN_BACK, callback_data="back_main")])
+    
+    text = "🗑 <b>سلة المحذوفات</b>\n\nأحدث العناصر المحذوفة:" if trash else "🗑 <b>سلة المحذوفات</b>\n\nالسلة فارغة."
+    await query.edit_message_text(text, reply_markup=InlineKeyboardMarkup(keyboard), parse_mode="HTML")
+    return A_MANAGE_TRASH
+
+async def admin_trash_actions_cb(update: Update, context: ContextTypes.DEFAULT_TYPE) -> int:
+    query = update.callback_query
+    await query.answer()
+    data = query.data
+    
+    if data == "back_main":
+        return await admin_start(update, context)
+        
+    trash = load_trash()
+    
+    if data.startswith("perma_"):
+        t_id = data.split("_", 1)[1]
+        trash = [t for t in trash if t["trash_id"] != t_id]
+        save_trash(trash)
+        return await show_trash_menu(query, context)
+        
+    elif data.startswith("restore_"):
+        t_id = data.split("_", 1)[1]
+        t_item = next((t for t in trash if t["trash_id"] == t_id), None)
+        if not t_item:
+            await query.answer("لم يتم العثور على العنصر.", show_alert=True)
+            return await show_trash_menu(query, context)
+            
+        db = load_data()
+        success = False
+        if t_item["type"] == "module":
+            db["modules"].append(t_item["data"])
+            success = True
+        elif t_item["type"] == "subject":
+            mod_id = t_item["parent_id"]
+            module = next((m for m in db["modules"] if m["id"] == mod_id), None)
+            if module:
+                module["subjects"].append(t_item["data"])
+                success = True
+            else:
+                await query.answer("خطأ: الموديول الأصلي غير موجود! استعد الموديول أولاً.", show_alert=True)
+        elif t_item["type"] == "lecture":
+            subj_id = t_item["parent_id"]
+            subject = None
+            for m in db["modules"]:
+                subject = next((s for s in m["subjects"] if s["id"] == subj_id), None)
+                if subject: break
+            if subject:
+                if "lectures" not in subject: subject["lectures"] = []
+                subject["lectures"].append(t_item["data"])
+                success = True
+            else:
+                await query.answer("خطأ: المادة الأصلية غير موجودة! استعد المادة أولاً.", show_alert=True)
+        elif t_item["type"].startswith("file_"):
+            lec_id = t_item["parent_id"]
+            lecture = None
+            for m in db["modules"]:
+                for s in m["subjects"]:
+                    lecture = next((l for l in s.get("lectures", []) if l["id"] == lec_id), None)
+                    if lecture: break
+                if lecture: break
+            if lecture:
+                target_field = "audio_file_id" if t_item["type"] == "file_audio" else "pdf_file_id"
+                lecture[target_field] = t_item["data"]
+                success = True
+            else:
+                await query.answer("خطأ: المحاضرة الأصلية غير موجودة! استعد المحاضرة أولاً.", show_alert=True)
+                
+        if success:
+            trash = [t for t in trash if t["trash_id"] != t_id]
+            save_trash(trash)
+            save_data(db)
+            await query.answer("تمت الاستعادة بنجاح!", show_alert=True)
+        return await show_trash_menu(query, context)
+
+    return A_MANAGE_TRASH
 
 # -- Manage Modules --
 async def show_modules_menu(query, context):
@@ -279,8 +424,11 @@ async def admin_modules_actions_cb(update: Update, context: ContextTypes.DEFAULT
     elif data.startswith("delmod_"):
         mod_id = data.split("_", 1)[1]
         db = load_data()
-        db["modules"] = [m for m in db["modules"] if m["id"] != mod_id]
-        save_data(db)
+        mod_to_delete = next((m for m in db["modules"] if m["id"] == mod_id), None)
+        if mod_to_delete:
+            trash_item("module", mod_to_delete)
+            db["modules"] = [m for m in db["modules"] if m["id"] != mod_id]
+            save_data(db)
         return await show_modules_menu(query, context)
         
     return A_ADD_MODULE_NAME
@@ -363,6 +511,9 @@ async def admin_subjects_actions_cb(update: Update, context: ContextTypes.DEFAUL
         db = load_data()
         for m in db["modules"]:
             if m["id"] == mod_id:
+                subj_to_delete = next((s for s in m["subjects"] if s["id"] == subj_id), None)
+                if subj_to_delete:
+                    trash_item("subject", subj_to_delete, parent_id=mod_id)
                 m["subjects"] = [s for s in m["subjects"] if s["id"] != subj_id]
                 break
         save_data(db)
@@ -500,9 +651,12 @@ async def manage_lectures_cb(update: Update, context: ContextTypes.DEFAULT_TYPE)
         subj_id = context.user_data["upload_subj_id"]
         module = next((m for m in db["modules"] if m["id"] == mod_id), None)
         subject = next((s for s in module["subjects"] if s["id"] == subj_id), None)
-        
-        subject["lectures"] = [l for l in subject["lectures"] if l["id"] != lec_id]
-        save_data(db)
+        if subject:
+            lec_to_delete = next((l for l in subject.get("lectures", []) if l["id"] == lec_id), None)
+            if lec_to_delete:
+                trash_item("lecture", lec_to_delete, parent_id=subj_id)
+                subject["lectures"] = [l for l in subject.get("lectures", []) if l["id"] != lec_id]
+                save_data(db)
         return await pick_subject_for_lecture_cb(update, context)
         
     elif data.startswith("addrec_") or data.startswith("addpdf_"):
@@ -525,7 +679,10 @@ async def manage_lectures_cb(update: Update, context: ContextTypes.DEFAULT_TYPE)
         lecture = next((l for l in subject["lectures"] if l["id"] == lec_id), None)
         
         target_field = "audio_file_id" if action == "delrec" else "pdf_file_id"
-        if target_field in lecture:
+        if lecture and target_field in lecture:
+            # We save the file reference in the trash
+            file_type = "audio" if action == "delrec" else "pdf"
+            trash_item(f"file_{file_type}", lecture[target_field], parent_id=lec_id)
             del lecture[target_field]
             save_data(db)
         return await pick_subject_for_lecture_cb(update, context)
@@ -970,7 +1127,8 @@ def main() -> None:
             A_WAIT_FOR_ADMIN_USERNAME: [
                 CallbackQueryHandler(admin_manage_admins_cb),
                 MessageHandler(filters.TEXT & ~filters.COMMAND, receive_admin_username)
-            ]
+            ],
+            A_MANAGE_TRASH: [CallbackQueryHandler(admin_trash_actions_cb)]
         },
         fallbacks=[
             CommandHandler("cancel", cancel_admin), 
