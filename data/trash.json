@@ -1,5 +1,16 @@
 [
   {
+    "trash_id": "a2a1becb",
+    "type": "subject",
+    "parent_id": "4c08d923",
+    "data": {
+      "id": "4eeb38d0",
+      "name": "💫 Anatomy",
+      "lectures": []
+    },
+    "deleted_at": 1783290920
+  },
+  {
     "trash_id": "a2201ffb",
     "type": "subject",
     "parent_id": "4c08d923",
