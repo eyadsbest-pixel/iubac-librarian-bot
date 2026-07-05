@@ -1,5 +1,16 @@
 [
   {
+    "trash_id": "d3135972",
+    "type": "lecture",
+    "parent_id": "30aac8ad",
+    "data": {
+      "id": "l1783258029",
+      "name": "“7” Tuberculosis",
+      "pdf_file_id": "BQACAgQAAxkBAAIU6WpKW7PndJVwFoQ_yceb8GGIsT1RAAJ6GgACbte4U-CjxeR8S8nBPAQ"
+    },
+    "deleted_at": 1783258416
+  },
+  {
     "trash_id": "72dbd077",
     "type": "file_pdf",
     "parent_id": "l1783244534",
