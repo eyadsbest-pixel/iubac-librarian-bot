@@ -1,5 +1,16 @@
 [
   {
+    "trash_id": "a2201ffb",
+    "type": "subject",
+    "parent_id": "4c08d923",
+    "data": {
+      "id": "e9896ae6",
+      "name": "💫 Pharmacology",
+      "lectures": []
+    },
+    "deleted_at": 1783290917
+  },
+  {
     "trash_id": "1f6c2009",
     "type": "subject",
     "parent_id": "4c08d923",
