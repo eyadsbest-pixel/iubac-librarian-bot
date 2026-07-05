@@ -250,7 +250,12 @@
           "id": "pns_biochemistry",
           "name": "💫 Biochemistry",
           "message_id": 2431,
-          "lectures": []
+          "lectures": [
+            {
+              "id": "l1783235299",
+              "name": "&2\" Biochemistry of Vision 'I+ll'"
+            }
+          ]
         },
         {
           "id": "pns_embryology",
@@ -701,12 +706,6 @@
           "files": []
         }
       ]
-    },
-    {
-      "id": "54a6cd19",
-      "name": "🧠 PNS - الجهاز العصبيّ الطّرفيّ",
-      "name_short": "🧠 PNS",
-      "subjects": []
     }
   ]
 }
