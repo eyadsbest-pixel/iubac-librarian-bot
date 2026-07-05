@@ -1168,40 +1168,6 @@
               "audio_file_id": "BAACAgQAAxkBAAIUvmpKWth5ph0cvgV7qJPn02AdE-DrAAJSGgACBzeJU2isyjAqJNDBPAQ"
             },
             {
-              "id": "l1783257834",
-              "name": "“5” Restrictive Lung Disease",
-              "pdf_file_id": "BQACAgQAAxkBAAIUxWpKWvYdb2Z89dzHHKGslhVHQTH2AALbLAACJ_-hU_sM0G4qcAQrPAQ",
-              "audio_file_id": "BAACAgQAAxkBAAIUx2pKWv8RQ0ohdv4G6Tj1IIbMDKJVAALbGAACYfOoU3UJMQHyzyaBPAQ"
-            },
-            {
-              "id": "l1783257870",
-              "name": "“6” Lung Tumors",
-              "audio_file_id": "BAACAgQAAxkBAAIUzmpKWyjUCk3rYaFbnL_YjX-AEdjYAAJiGwACC-mxUzvMkXptS1imPAQ",
-              "pdf_file_id": "BQACAgQAAxkBAAIU0GpKWznMhFk_TF2MbaSpWln0x7c6AAK9GAACYmCwUyKufCrCxdVRPAQ"
-            },
-            {
-              "id": "l1783257951",
-              "name": "“6” Lung Tumors part 1",
-              "pdf_file_id": "BQACAgQAAxkBAAIU0GpKWznMhFk_TF2MbaSpWln0x7c6AAK9GAACYmCwUyKufCrCxdVRPAQ",
-              "audio_file_id": "BAACAgQAAxkBAAIUzmpKWyjUCk3rYaFbnL_YjX-AEdjYAAJiGwACC-mxUzvMkXptS1imPAQ"
-            },
-            {
-              "id": "l1783257980",
-              "name": "“6” Lung Tumors part 2",
-              "pdf_file_id": "BQACAgQAAxkBAAIU0GpKWznMhFk_TF2MbaSpWln0x7c6AAK9GAACYmCwUyKufCrCxdVRPAQ",
-              "audio_file_id": "BAACAgQAAxkBAAIU4mpKW5GdBHYdUjyXXHLlaUu3xcFMAAJgGwACC-mxUyRtdbWMHlMtPAQ"
-            },
-            {
-              "id": "l1783258029",
-              "name": "“7” Tuberculosis",
-              "pdf_file_id": "BQACAgQAAxkBAAIU6WpKW7PndJVwFoQ_yceb8GGIsT1RAAJ6GgACbte4U-CjxeR8S8nBPAQ"
-            },
-            {
-              "id": "l1783258190",
-              "name": "“5” Restrictive Lung Disease part 2",
-              "pdf_file_id": "BQACAgQAAxkBAAIUxWpKWvYdb2Z89dzHHKGslhVHQTH2AALbLAACJ_-hU_sM0G4qcAQrPAQ"
-            },
-            {
               "id": "l1783258242",
               "name": "“5” Restrictive Lung Disease part 1",
               "pdf_file_id": "BQACAgQAAxkBAAIUxWpKWvYdb2Z89dzHHKGslhVHQTH2AALbLAACJ_-hU_sM0G4qcAQrPAQ",
@@ -1236,7 +1202,12 @@
         {
           "id": "0693a441",
           "name": "💫 Surgery & Medicine",
-          "lectures": []
+          "lectures": [
+            {
+              "id": "l1783259250",
+              "name": "Medicine “1” Bronchial Asthma"
+            }
+          ]
         },
         {
           "id": "b557505c",
