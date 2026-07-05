@@ -1212,14 +1212,10 @@
           ]
         },
         {
-          "id": "b557505c",
-          "name": "Archive",
-          "files": []
-        },
-        {
           "id": "132930e6",
           "name": "Community",
-          "files": []
+          "files": [],
+          "lectures": []
         },
         {
           "id": "e828eeb5",
