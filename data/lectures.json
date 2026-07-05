@@ -733,7 +733,12 @@
           "id": "hls_community",
           "name": "💫 Community",
           "message_id": 2605,
-          "lectures": []
+          "lectures": [
+            {
+              "id": "l1783275720",
+              "name": "Anemia"
+            }
+          ]
         },
         {
           "id": "c497f012",
