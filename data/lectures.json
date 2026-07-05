@@ -819,6 +819,11 @@
           "id": "e22a6fd3",
           "name": "💫 Surgery & Medicine",
           "lectures": []
+        },
+        {
+          "id": "b68ad26b",
+          "name": "Archive",
+          "files": []
         }
       ]
     },
