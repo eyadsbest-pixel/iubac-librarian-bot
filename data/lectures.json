@@ -575,7 +575,12 @@
           "id": "hls_biochemistry",
           "name": "💫 Biochemistry",
           "message_id": 2603,
-          "lectures": []
+          "lectures": [
+            {
+              "id": "l1783247148",
+              "name": "Erythrocytes metabolism"
+            }
+          ]
         },
         {
           "id": "hls_pathology",
@@ -876,7 +881,8 @@
             {
               "id": "l1783247016",
               "name": "“6” Pulmonary & Alveolar Ventilation & Perfusion",
-              "pdf_file_id": "BQACAgQAAxkBAAISZGpKMSxerezyr7s6JzIEoMFroDMMAAIKGwACc-p5U91f_YTMX-qePAQ"
+              "pdf_file_id": "BQACAgQAAxkBAAISZGpKMSxerezyr7s6JzIEoMFroDMMAAIKGwACc-p5U91f_YTMX-qePAQ",
+              "audio_file_id": "BAACAgQAAxkBAAISaGpKMTh6opHuczBe34-t8V5Bm-8KAAIMGQACc-qBUwH4b2nkQ78oPAQ"
             }
           ]
         },
