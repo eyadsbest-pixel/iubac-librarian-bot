@@ -133,13 +133,7 @@
           "id": "pns_anatomy",
           "name": "💫 Anatomy",
           "message_id": 2429,
-          "lectures": [
-            {
-              "id": "l1782990778",
-              "name": "المحاضرتين الأولى والثّانية للأناتومي\nللدّكتور يوسف",
-              "pdf_file_id": "BQACAgQAAxkBAAPPakZD_qrAHBhglDnFU0wpyZYdAS4AAqodAALamNBQPGkYbFMPljE8BA"
-            }
-          ]
+          "lectures": []
         },
         {
           "id": "pns_pharmacology",
