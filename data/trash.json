@@ -1,5 +1,17 @@
 [
   {
+    "trash_id": "9b981730",
+    "type": "lecture",
+    "parent_id": "0f2cc891",
+    "data": {
+      "id": "l1783244315",
+      "name": "Bacterial respiratory tract infections 'III'",
+      "pdf_file_id": "BQACAgQAAxkBAAIQ32pKJlYsd89cL95dPsdKNC-RFQ0LAAKtGgACsuA4U3ztI-dRrOouPAQ",
+      "audio_file_id": "BAACAgQAAxkBAAIQ5WpKJl85JolI_oC1GzzcY1ya46GMAALEGAACmjxBU_hfRWrBum3RPAQ"
+    },
+    "deleted_at": 1783244504
+  },
+  {
     "trash_id": "5f2d82f2",
     "type": "module",
     "parent_id": null,
