@@ -674,14 +674,19 @@
               "id": "l1783243803",
               "name": "Histology of Respiratory Tract",
               "pdf_file_id": "BQACAgQAAxkBAAIQaGpKJKiNGZgoWn5_2Vu375LHs5i2AAKHHAAC2hoQUxV8f2OgCcKrPAQ",
-              "audio_file_id": "BAACAgQAAxkBAAIQampKJNiz_33mK9RP3TbgHcvRCoHuAAJfGgACWSIRUyBunYu5nx3UPAQ"
+              "audio_file_id": "BAACAgQAAxkBAAIQa2pKJNjuZuqjqjYukDswNEt0ZleaAAIkGAACsuAwUz4ZCJDmJAUlPAQ"
             }
           ]
         },
         {
           "id": "0f2cc891",
           "name": "💫 Microbiology",
-          "lectures": []
+          "lectures": [
+            {
+              "id": "l1783244160",
+              "name": "Bacterial respiratory tract infections 'I'"
+            }
+          ]
         },
         {
           "id": "6234e888",
