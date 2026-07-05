@@ -442,7 +442,12 @@
           "id": "hls_physiology",
           "name": "💫 Physiology",
           "message_id": 2600,
-          "lectures": []
+          "lectures": [
+            {
+              "id": "l1783239924",
+              "name": "Blood composition, function & viscosity"
+            }
+          ]
         },
         {
           "id": "hls_anatomy",
