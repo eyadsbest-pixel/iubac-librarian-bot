@@ -917,7 +917,12 @@
         {
           "id": "e55b1efd",
           "name": "💫 Microbiology",
-          "lectures": []
+          "lectures": [
+            {
+              "id": "l1783292706",
+              "name": "\"1\" Endocarditis"
+            }
+          ]
         },
         {
           "id": "4ac0b172",
