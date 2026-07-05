@@ -1046,7 +1046,12 @@
           "id": "53f66d4a",
           "name": "💫 Anatomy",
           "files": [],
-          "lectures": []
+          "lectures": [
+            {
+              "id": "l1783294063",
+              "name": "“1” Mediastinum & Pericardium"
+            }
+          ]
         },
         {
           "id": "ed520e98",
