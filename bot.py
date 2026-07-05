@@ -719,8 +719,40 @@ async def receive_lecture_name(update: Update, context: ContextTypes.DEFAULT_TYP
 
 async def receive_lecture_file(update: Update, context: ContextTypes.DEFAULT_TYPE) -> int:
     if update.message.text == BTN_DONE:
-        await update.message.reply_text("✅ تم الانتهاء من رفع الملفات.", reply_markup=ReplyKeyboardRemove())
-        return await admin_start(update, context)
+        db = load_data()
+        mod_id = context.user_data.get("upload_mod_id")
+        subj_id = context.user_data.get("upload_subj_id")
+        if not mod_id or not subj_id:
+            await update.message.reply_text("✅ تم الانتهاء من رفع الملفات.", reply_markup=ReplyKeyboardRemove())
+            return await admin_start(update, context)
+            
+        module = next((m for m in db["modules"] if m["id"] == mod_id), None)
+        subject = next((s for s in module["subjects"] if s["id"] == subj_id), None) if module else None
+        
+        if not subject:
+            await update.message.reply_text("✅ تم الانتهاء من رفع الملفات.", reply_markup=ReplyKeyboardRemove())
+            return await admin_start(update, context)
+            
+        await update.message.reply_text("✅ تم الانتهاء.", reply_markup=ReplyKeyboardRemove())
+        
+        keyboard = []
+        for l in subject.get("lectures", []):
+            keyboard.append([InlineKeyboardButton(f"📖 {l['name']}", callback_data="none")])
+            keyboard.append([
+                InlineKeyboardButton("➕ تسجيل", callback_data=f"addrec_{l['id']}"),
+                InlineKeyboardButton("🗑 تسجيل", callback_data=f"delrec_{l['id']}")
+            ])
+            keyboard.append([
+                InlineKeyboardButton("➕ ملف", callback_data=f"addpdf_{l['id']}"),
+                InlineKeyboardButton("🗑 ملف", callback_data=f"delpdf_{l['id']}")
+            ])
+            keyboard.append([InlineKeyboardButton("🗑 حذف المحاضرة كاملة", callback_data=f"dellec_{l['id']}")])
+            
+        keyboard.append([InlineKeyboardButton("➕ إضافة محاضرة جديدة", callback_data="add_lecture")])
+        keyboard.append([InlineKeyboardButton(BTN_BACK, callback_data=f"upmod_{mod_id}")])
+        
+        await update.message.reply_text(f"📝 إدارة المحاضرات في: {subject['name']}\nاختر خياراً:", reply_markup=InlineKeyboardMarkup(keyboard))
+        return A_MANAGE_LECTURES
         
     lec_id = context.user_data["current_lec_id"]
     db = load_data()
