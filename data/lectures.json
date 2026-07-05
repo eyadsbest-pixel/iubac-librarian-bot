@@ -397,7 +397,12 @@
           "id": "hls_microbiology",
           "name": "💫 Microbiology",
           "message_id": 2599,
-          "lectures": []
+          "lectures": [
+            {
+              "id": "l1783239004",
+              "name": "EBV and parvo"
+            }
+          ]
         },
         {
           "id": "hls_physiology",
