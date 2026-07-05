@@ -1142,7 +1142,12 @@
         {
           "id": "30aac8ad",
           "name": "💫 Pathology",
-          "lectures": []
+          "lectures": [
+            {
+              "id": "l1783257512",
+              "name": "“1” Atelectasis"
+            }
+          ]
         },
         {
           "id": "0693a441",
