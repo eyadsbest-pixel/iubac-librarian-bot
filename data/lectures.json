@@ -466,6 +466,10 @@
               "name": "Blood grouping",
               "pdf_file_id": "BQACAgQAAxkBAAIQk2pKJZgqG1v2Y-cdGnO1TIl3hLZKAAJtHQACB9ShUkAqd9Yoy-luPAQ",
               "audio_file_id": "BAACAgQAAxkBAAIQl2pKJZydThaL037oTKba38WxF1rJAALcHwAC8KuoUpYz8GerYZKEPAQ"
+            },
+            {
+              "id": "l1783244290",
+              "name": "Hemostasis"
             }
           ]
         },
@@ -697,8 +701,7 @@
             {
               "id": "l1783244214",
               "name": "Bacterial respiratory tract infections 'II'",
-              "pdf_file_id": "BQACAgQAAxkBAAIQo2pKJcUsbgSgONrjHonb1Ijxz0HiAAJOFgACk6ExU1j_j2Ot-m63PAQ",
-              "audio_file_id": "BAACAgQAAxkBAAIQpWpKJc42_7878r77kVKINCaE-2FGAAInGAACsuAwUzDQksM4mSlEPAQ"
+              "pdf_file_id": "BQACAgQAAxkBAAIQo2pKJcUsbgSgONrjHonb1Ijxz0HiAAJOFgACk6ExU1j_j2Ot-m63PAQ"
             }
           ]
         },
