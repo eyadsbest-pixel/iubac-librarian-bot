@@ -997,7 +997,12 @@
           "id": "7c38ef65",
           "name": "💫 Physiology 2",
           "files": [],
-          "lectures": []
+          "lectures": [
+            {
+              "id": "l1783293571",
+              "name": "“11” Arterial Blood Pressure"
+            }
+          ]
         },
         {
           "id": "53f66d4a",
