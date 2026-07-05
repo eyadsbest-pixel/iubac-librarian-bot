@@ -279,7 +279,12 @@
           "id": "pns_embryology",
           "name": "💫 Embryology",
           "message_id": 2432,
-          "lectures": []
+          "lectures": [
+            {
+              "id": "l1783235680",
+              "name": "Pharyngeal apparatus 1"
+            }
+          ]
         },
         {
           "id": "pns_pathology",
