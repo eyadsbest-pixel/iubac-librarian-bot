@@ -10,17 +10,5 @@
       "subjects": []
     },
     "deleted_at": 1783229763
-  },
-  {
-    "trash_id": "2f5550e0",
-    "type": "module",
-    "parent_id": null,
-    "data": {
-      "id": "6df789ef",
-      "name": "Hh",
-      "name_short": "Hh",
-      "subjects": []
-    },
-    "deleted_at": 1783229484
   }
 ]
