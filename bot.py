@@ -754,7 +754,19 @@ async def receive_lecture_file(update: Update, context: ContextTypes.DEFAULT_TYP
         await update.message.reply_text(f"📝 إدارة المحاضرات في: {subject['name']}\nاختر خياراً:", reply_markup=InlineKeyboardMarkup(keyboard))
         return A_MANAGE_LECTURES
         
-    lec_id = context.user_data["current_lec_id"]
+    # If it's a text message that isn't BTN_DONE, it's a stray button press (e.g. from student menu)
+    if update.message.text and update.message.text != BTN_DONE:
+        markup = ReplyKeyboardMarkup([[BTN_DONE]], resize_keyboard=True)
+        await update.message.reply_text(
+            f"👉 أرسل ملفاً (PDF أو تسجيل) أو اضغط '{BTN_DONE}' للانتهاء.",
+            reply_markup=markup
+        )
+        return A_WAIT_FOR_LECTURE_FILE
+        
+    lec_id = context.user_data.get("current_lec_id")
+    if not lec_id:
+        await update.message.reply_text("⚠️ حدث خطأ. يرجى البدء من جديد.", reply_markup=ReplyKeyboardRemove())
+        return await admin_start(update, context)
     db = load_data()
     mod_id = context.user_data["upload_mod_id"]
     subj_id = context.user_data["upload_subj_id"]
@@ -777,7 +789,7 @@ async def receive_lecture_file(update: Update, context: ContextTypes.DEFAULT_TYP
         file_id = update.message.photo[-1].file_id
 
     if not file_id:
-        await update.message.reply_text("⚠️ الرجاء إرسال ملف صالح.")
+        await update.message.reply_text("⚠️ الرجاء إرسال ملف صالح (PDF، صوت، فيديو، أو صورة).")
         return A_WAIT_FOR_LECTURE_FILE
 
     if target:
