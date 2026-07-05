@@ -526,7 +526,12 @@
           "id": "hls_pharmacology",
           "name": "💫 Pharmacology",
           "message_id": 2602,
-          "lectures": []
+          "lectures": [
+            {
+              "id": "l1783244799",
+              "name": "Anticoagulants"
+            }
+          ]
         },
         {
           "id": "hls_biochemistry",
