@@ -508,7 +508,12 @@
           "id": "hls_anatomy",
           "name": "💫 Anatomy",
           "message_id": 2601,
-          "lectures": []
+          "lectures": [
+            {
+              "id": "l1783244534",
+              "name": "Thoracic Duct & Spleen"
+            }
+          ]
         },
         {
           "id": "hls_pharmacology",
