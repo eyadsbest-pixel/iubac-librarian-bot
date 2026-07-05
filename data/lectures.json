@@ -354,7 +354,12 @@
           "id": "hls_histology",
           "name": "💫 Histology",
           "message_id": 2598,
-          "lectures": []
+          "lectures": [
+            {
+              "id": "l1783236608",
+              "name": "Bone marrow 1"
+            }
+          ]
         },
         {
           "id": "hls_microbiology",
