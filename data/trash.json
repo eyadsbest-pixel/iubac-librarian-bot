@@ -1,5 +1,16 @@
 [
   {
+    "trash_id": "e794e48e",
+    "type": "lecture",
+    "parent_id": "30aac8ad",
+    "data": {
+      "id": "l1783258190",
+      "name": "“5” Restrictive Lung Disease part 2",
+      "pdf_file_id": "BQACAgQAAxkBAAIUxWpKWvYdb2Z89dzHHKGslhVHQTH2AALbLAACJ_-hU_sM0G4qcAQrPAQ"
+    },
+    "deleted_at": 1783258448
+  },
+  {
     "trash_id": "b0acc115",
     "type": "lecture",
     "parent_id": "30aac8ad",
