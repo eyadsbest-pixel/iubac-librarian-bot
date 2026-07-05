@@ -638,6 +638,11 @@
           "name": "💫 Community",
           "message_id": 2605,
           "lectures": []
+        },
+        {
+          "id": "c497f012",
+          "name": "Archive",
+          "files": []
         }
       ]
     },
