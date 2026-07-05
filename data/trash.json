@@ -1,5 +1,15 @@
 [
   {
+    "trash_id": "a430761c",
+    "type": "lecture",
+    "parent_id": "a99ce99b",
+    "data": {
+      "id": "l1783290364",
+      "name": "Lab \"1&2\" Bacterial & Parasitic Infections"
+    },
+    "deleted_at": 1783290401
+  },
+  {
     "trash_id": "2c1177d6",
     "type": "file_not",
     "parent_id": "l1783026440",
