@@ -963,7 +963,12 @@
           "id": "72bb12ef",
           "name": "💫 Archive",
           "files": [],
-          "lectures": []
+          "lectures": [
+            {
+              "id": "l1783291021",
+              "name": "الأرشيف كامل"
+            }
+          ]
         }
       ]
     },
