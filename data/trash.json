@@ -1,5 +1,16 @@
 [
   {
+    "trash_id": "a7dd9fe4",
+    "type": "subject",
+    "parent_id": "4c08d923",
+    "data": {
+      "id": "339b3c54",
+      "name": "💫 Pathology",
+      "lectures": []
+    },
+    "deleted_at": 1783290912
+  },
+  {
     "trash_id": "89458516",
     "type": "subject",
     "parent_id": "4c08d923",
