@@ -1,5 +1,16 @@
 [
   {
+    "trash_id": "89458516",
+    "type": "subject",
+    "parent_id": "4c08d923",
+    "data": {
+      "id": "e22a6fd3",
+      "name": "💫 Surgery & Medicine",
+      "lectures": []
+    },
+    "deleted_at": 1783290909
+  },
+  {
     "trash_id": "958448a3",
     "type": "subject",
     "parent_id": "4c08d923",
