@@ -202,7 +202,12 @@
           "id": "pns_pharmacology",
           "name": "💫 Pharmacology",
           "message_id": 2430,
-          "lectures": []
+          "lectures": [
+            {
+              "id": "l1783231352",
+              "name": "Drugs Acting On Autonomic Ganglia"
+            }
+          ]
         },
         {
           "id": "pns_biochemistry",
