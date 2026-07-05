@@ -328,7 +328,12 @@
           "id": "pns_surgery_medicine",
           "name": "💫 Surgery & Medicine",
           "message_id": 2434,
-          "lectures": []
+          "lectures": [
+            {
+              "id": "l1783236322",
+              "name": "Medicine'PNS\"1\"Neuroscience&Peripheral'Neuropathy"
+            }
+          ]
         }
       ]
     },
