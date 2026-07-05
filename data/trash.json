@@ -1,5 +1,17 @@
 [
   {
+    "trash_id": "2e8c9323",
+    "type": "lecture",
+    "parent_id": "30aac8ad",
+    "data": {
+      "id": "l1783257980",
+      "name": "“6” Lung Tumors part 2",
+      "pdf_file_id": "BQACAgQAAxkBAAIU0GpKWznMhFk_TF2MbaSpWln0x7c6AAK9GAACYmCwUyKufCrCxdVRPAQ",
+      "audio_file_id": "BAACAgQAAxkBAAIU4mpKW5GdBHYdUjyXXHLlaUu3xcFMAAJgGwACC-mxUyRtdbWMHlMtPAQ"
+    },
+    "deleted_at": 1783258419
+  },
+  {
     "trash_id": "d3135972",
     "type": "lecture",
     "parent_id": "30aac8ad",
