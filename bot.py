@@ -1114,17 +1114,19 @@ def start_keep_alive():
     logger.info(f"Keep-alive web server started on port {port}")
 
 def self_ping():
-    """Ping our own Render URL every 10 minutes to prevent spin-down."""
+    """Ping our own Render URL every 2 minutes to prevent spin-down."""
     import urllib.request
     render_url = os.environ.get("RENDER_EXTERNAL_URL")
     if not render_url:
-        return  # Not on Render, skip
+        logger.warning("RENDER_EXTERNAL_URL not set. Self-ping disabled.")
+        return
+    logger.info(f"Self-ping started: will ping {render_url} every 2 minutes.")
     while True:
         try:
             urllib.request.urlopen(render_url, timeout=10)
         except Exception:
             pass
-        time.sleep(600)  # every 10 minutes
+        time.sleep(120)  # every 2 minutes
 
 def main() -> None:
     logger.info("Starting IUBAC Librarian Bot (v2 Dynamic)...")
