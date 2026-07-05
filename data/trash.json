@@ -1,5 +1,16 @@
 [
   {
+    "trash_id": "958448a3",
+    "type": "subject",
+    "parent_id": "4c08d923",
+    "data": {
+      "id": "b68ad26b",
+      "name": "Archive",
+      "files": []
+    },
+    "deleted_at": 1783290904
+  },
+  {
     "trash_id": "a430761c",
     "type": "lecture",
     "parent_id": "a99ce99b",
