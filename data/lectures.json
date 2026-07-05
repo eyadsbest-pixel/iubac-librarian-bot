@@ -1215,7 +1215,12 @@
           "id": "132930e6",
           "name": "Community",
           "files": [],
-          "lectures": []
+          "lectures": [
+            {
+              "id": "l1783259532",
+              "name": "Community “1” COPD"
+            }
+          ]
         },
         {
           "id": "e828eeb5",
