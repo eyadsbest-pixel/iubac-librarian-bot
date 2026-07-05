@@ -16,8 +16,7 @@
               "id": "l1783026440",
               "name": "المحاضرتين الأولى والثّانية للهستو\nللدّكتورة هالة",
               "pdf_file_id": "BQACAgQAAxkBAAIBZmpGUY2Y_ksS8UW_9Y_vJGePcAN1AAKxHQAC2pjQUAQVASS7lRekPAQ",
-              "audio_file_id": "BAACAgQAAxkBAAIEUGpIUFojIPqb1urI8x_F2qOET_uQAAJfIQAC6UnoUCok71NHM6PZPAQ",
-              "notes_file_id": "BQACAgQAAxkBAAIRT2pKJvss367FxkkZOfez99s5kednAALJIQAC559JUnkD0XmWBzDWPAQ"
+              "audio_file_id": "BAACAgQAAxkBAAIEUGpIUFojIPqb1urI8x_F2qOET_uQAAJfIQAC6UnoUCok71NHM6PZPAQ"
             },
             {
               "id": "l1783123904",
@@ -976,6 +975,10 @@
               "name": "Histology of Respiratory Tract",
               "pdf_file_id": "BQACAgQAAxkBAAIQaGpKJKiNGZgoWn5_2Vu375LHs5i2AAKHHAAC2hoQUxV8f2OgCcKrPAQ",
               "audio_file_id": "BAACAgQAAxkBAAIQa2pKJNjuZuqjqjYukDswNEt0ZleaAAIkGAACsuAwUz4ZCJDmJAUlPAQ"
+            },
+            {
+              "id": "l1783289879",
+              "name": "Histology of Respiratory Tract part 2"
             }
           ]
         },
