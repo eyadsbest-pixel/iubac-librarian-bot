@@ -600,18 +600,15 @@
             },
             {
               "id": "l1783247766",
-              "name": "Heme degradation & Jaundice record part 2",
-              "pdf_file_id": "BAACAgQAAxkBAAIStWpKM53c2-nnAsCd9w9qUEzjtRRbAAJKHQACB9SZUrk03mJNWaL_PAQ"
+              "name": "Heme degradation & Jaundice record part 2"
             },
             {
               "id": "l1783247794",
-              "name": "Porphyrias",
-              "pdf_file_id": "BAACAgQAAxkBAAISwGpKM8BAlOgV9im0VmEmZjwu7m_XAALZHwAC8KuoUh86lPIYSpndPAQ"
+              "name": "Porphyrias"
             },
             {
               "id": "l1783247819",
-              "name": "Hemoglobinopathies",
-              "pdf_file_id": "BAACAgQAAxkBAAISy2pKM9VR-CRdNsjSyOKCk1HqFdQsAAIkIQAC277AUtPZmTHu4x-SPAQ"
+              "name": "Hemoglobinopathies"
             }
           ]
         },
@@ -938,7 +935,8 @@
             {
               "id": "l1783247690",
               "name": "“1” Lab “Spirometry”",
-              "pdf_file_id": "BQACAgQAAxkBAAISx2pKM80iVAagTIpW9ntY0yv8pgVXAAKlHAAC8kJpU9GYkGa9RmH0PAQ"
+              "pdf_file_id": "BQACAgQAAxkBAAISx2pKM80iVAagTIpW9ntY0yv8pgVXAAKlHAAC8kJpU9GYkGa9RmH0PAQ",
+              "audio_file_id": "BAACAgQAAxkBAAIS0WpKNAfVqfFbhJEM2Sjoin6m7ypvAALUGwACc-pxU7HgGs0q4YXkPAQ"
             }
           ]
         },
