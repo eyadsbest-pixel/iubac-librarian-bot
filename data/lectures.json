@@ -842,7 +842,12 @@
         {
           "id": "6234e888",
           "name": "💫 Physiology",
-          "lectures": []
+          "lectures": [
+            {
+              "id": "l1783246290",
+              "name": "“1” Pulmonary & Alveolar Ventilation"
+            }
+          ]
         },
         {
           "id": "ed159ec4",
