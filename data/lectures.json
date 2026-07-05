@@ -297,7 +297,12 @@
           "id": "pns_pathology",
           "name": "💫 Pathology",
           "message_id": 2433,
-          "lectures": []
+          "lectures": [
+            {
+              "id": "l1783235799",
+              "name": "Demyelinating  Disease 'I'"
+            }
+          ]
         },
         {
           "id": "pns_surgery_medicine",
