@@ -754,7 +754,16 @@ async def receive_lecture_file(update: Update, context: ContextTypes.DEFAULT_TYP
         msg_type = "التسجيل" if target == "audio_file_id" else "ملف الـ PDF"
         await update.message.reply_text(f"✅ تم حفظ {msg_type} للمحاضرة بنجاح.")
     else:
-        if update.message.document:
+        is_record = False
+        if update.message.audio or update.message.voice or update.message.video or update.message.photo:
+            is_record = True
+        elif update.message.document:
+            mime = update.message.document.mime_type or ""
+            # If the document is an audio or video file, treat it as a record
+            if mime.startswith("audio/") or mime.startswith("video/"):
+                is_record = True
+
+        if not is_record:
             lecture["pdf_file_id"] = file_id
             save_data(db)
             await update.message.reply_text("✅ تم حفظ ملف الـ PDF للمحاضرة.")
