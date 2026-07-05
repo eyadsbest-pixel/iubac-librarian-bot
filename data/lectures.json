@@ -638,7 +638,12 @@
           "id": "hls_pathology",
           "name": "💫 Pathology",
           "message_id": 2604,
-          "lectures": []
+          "lectures": [
+            {
+              "id": "l1783273638",
+              "name": "Hematopoietic & Lymphoid System"
+            }
+          ]
         },
         {
           "id": "hls_community",
