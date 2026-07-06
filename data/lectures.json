@@ -1616,7 +1616,12 @@
         {
           "id": "3aa47af8",
           "name": "💫 Surgery & Medicine",
-          "lectures": []
+          "lectures": [
+            {
+              "id": "l1783345951",
+              "name": "Medicine “1” Epilepsy"
+            }
+          ]
         },
         {
           "id": "6567cea7",
