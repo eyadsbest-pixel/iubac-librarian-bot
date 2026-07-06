@@ -2962,7 +2962,12 @@
           "id": "593fedc1",
           "name": "Mid Archive",
           "files": [],
-          "lectures": []
+          "lectures": [
+            {
+              "id": "l1783374582",
+              "name": "Athar Mid Archive"
+            }
+          ]
         }
       ]
     }
