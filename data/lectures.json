@@ -1069,7 +1069,12 @@
           "id": "ugs_embryology",
           "name": "💫 Embryology",
           "message_id": 2793,
-          "lectures": []
+          "lectures": [
+            {
+              "id": "l1783327411",
+              "name": "Development of Kidney and ureter"
+            }
+          ]
         },
         {
           "id": "ugs_pathology",
