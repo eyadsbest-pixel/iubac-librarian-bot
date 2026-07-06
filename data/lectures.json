@@ -807,7 +807,12 @@
           "id": "ugs_microbiology",
           "name": "💫 Microbiology",
           "message_id": 2788,
-          "lectures": []
+          "lectures": [
+            {
+              "id": "l1783306757",
+              "name": "Urinary tract infection 1"
+            }
+          ]
         },
         {
           "id": "ugs_physiology",
