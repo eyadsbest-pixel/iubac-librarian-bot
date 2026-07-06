@@ -2957,6 +2957,11 @@
           "id": "e19242ba",
           "name": "Archive",
           "files": []
+        },
+        {
+          "id": "593fedc1",
+          "name": "Mid Archive",
+          "files": []
         }
       ]
     }
