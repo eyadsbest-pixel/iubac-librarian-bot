@@ -2901,7 +2901,12 @@
           "id": "32ae1219",
           "name": "Shagaf Mid Exam Archive",
           "files": [],
-          "lectures": []
+          "lectures": [
+            {
+              "id": "l1783368690",
+              "name": "أرشيف المد لشغف 2025"
+            }
+          ]
         },
         {
           "id": "bcba71b0",
