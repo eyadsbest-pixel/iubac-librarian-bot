@@ -615,24 +615,7 @@ async def pick_subject_for_lecture_cb(update: Update, context: ContextTypes.DEFA
         save_data(db)
         
     for l in subject.get("lectures", []):
-        keyboard.append([InlineKeyboardButton(f"📖 {l['name']}", callback_data="none")])
-        keyboard.append([
-            InlineKeyboardButton("➕ تسجيل", callback_data=f"addrec_{l['id']}"),
-            InlineKeyboardButton("🗑 تسجيل", callback_data=f"delrec_{l['id']}")
-        ])
-        keyboard.append([
-            InlineKeyboardButton("➕ ملف", callback_data=f"addpdf_{l['id']}"),
-            InlineKeyboardButton("🗑 ملف", callback_data=f"delpdf_{l['id']}")
-        ])
-        keyboard.append([
-            InlineKeyboardButton("➕ ملخص", callback_data=f"addsum_{l['id']}"),
-            InlineKeyboardButton("🗑 ملخص", callback_data=f"delsum_{l['id']}")
-        ])
-        keyboard.append([
-            InlineKeyboardButton("➕ تبييض", callback_data=f"addnot_{l['id']}"),
-            InlineKeyboardButton("🗑 تبييض", callback_data=f"delnot_{l['id']}")
-        ])
-        keyboard.append([InlineKeyboardButton("🗑 حذف المحاضرة كاملة", callback_data=f"dellec_{l['id']}")])
+        keyboard.append([InlineKeyboardButton(f"📖 {l['name']}", callback_data=f"viewlec_{l['id']}")])
         
     keyboard.append([InlineKeyboardButton("➕ إضافة محاضرة جديدة", callback_data="add_lecture")])
     keyboard.append([InlineKeyboardButton(BTN_BACK, callback_data=f"upmod_{mod_id}")])
@@ -647,6 +630,39 @@ async def manage_lectures_cb(update: Update, context: ContextTypes.DEFAULT_TYPE)
     
     if data.startswith("upmod_"):
         return await pick_module_for_lecture_cb(update, context)
+        
+    elif data.startswith("viewlec_"):
+        lec_id = data.split("_", 1)[1]
+        context.user_data["current_lec_id"] = lec_id
+        db = load_data()
+        mod_id = context.user_data["upload_mod_id"]
+        subj_id = context.user_data["upload_subj_id"]
+        module = next((m for m in db["modules"] if m["id"] == mod_id), None)
+        subject = next((s for s in module["subjects"] if s["id"] == subj_id), None)
+        lecture = next((l for l in subject["lectures"] if l["id"] == lec_id), None)
+        
+        keyboard = [
+            [
+                InlineKeyboardButton("➕ تسجيل", callback_data=f"addrec_{lecture['id']}"),
+                InlineKeyboardButton("🗑 تسجيل", callback_data=f"delrec_{lecture['id']}")
+            ],
+            [
+                InlineKeyboardButton("➕ ملف", callback_data=f"addpdf_{lecture['id']}"),
+                InlineKeyboardButton("🗑 ملف", callback_data=f"delpdf_{lecture['id']}")
+            ],
+            [
+                InlineKeyboardButton("➕ ملخص", callback_data=f"addsum_{lecture['id']}"),
+                InlineKeyboardButton("🗑 ملخص", callback_data=f"delsum_{lecture['id']}")
+            ],
+            [
+                InlineKeyboardButton("➕ تبييض", callback_data=f"addnot_{lecture['id']}"),
+                InlineKeyboardButton("🗑 تبييض", callback_data=f"delnot_{lecture['id']}")
+            ],
+            [InlineKeyboardButton("🗑 حذف المحاضرة كاملة", callback_data=f"dellec_{lecture['id']}")],
+            [InlineKeyboardButton("🔙 رجوع للقائمة", callback_data=f"upsubj_{subj_id}")]
+        ]
+        await query.edit_message_text(f"📝 إدارة المحاضرة: {lecture['name']}\nاختر خياراً:", reply_markup=InlineKeyboardMarkup(keyboard))
+        return A_MANAGE_LECTURES
         
     elif data == "add_lecture":
         await query.edit_message_text("✏️ أرسل اسم المحاضرة الجديدة الآن (مثال: Lec 1 - Intro):")
@@ -764,24 +780,7 @@ async def receive_lecture_file(update: Update, context: ContextTypes.DEFAULT_TYP
         
         keyboard = []
         for l in subject.get("lectures", []):
-            keyboard.append([InlineKeyboardButton(f"📖 {l['name']}", callback_data="none")])
-            keyboard.append([
-                InlineKeyboardButton("➕ تسجيل", callback_data=f"addrec_{l['id']}"),
-                InlineKeyboardButton("🗑 تسجيل", callback_data=f"delrec_{l['id']}")
-            ])
-            keyboard.append([
-                InlineKeyboardButton("➕ ملف", callback_data=f"addpdf_{l['id']}"),
-                InlineKeyboardButton("🗑 ملف", callback_data=f"delpdf_{l['id']}")
-            ])
-            keyboard.append([
-                InlineKeyboardButton("➕ ملخص", callback_data=f"addsum_{l['id']}"),
-                InlineKeyboardButton("🗑 ملخص", callback_data=f"delsum_{l['id']}")
-            ])
-            keyboard.append([
-                InlineKeyboardButton("➕ تبييض", callback_data=f"addnot_{l['id']}"),
-                InlineKeyboardButton("🗑 تبييض", callback_data=f"delnot_{l['id']}")
-            ])
-            keyboard.append([InlineKeyboardButton("🗑 حذف المحاضرة كاملة", callback_data=f"dellec_{l['id']}")])
+            keyboard.append([InlineKeyboardButton(f"📖 {l['name']}", callback_data=f"viewlec_{l['id']}")])
             
         keyboard.append([InlineKeyboardButton("➕ إضافة محاضرة جديدة", callback_data="add_lecture")])
         keyboard.append([InlineKeyboardButton(BTN_BACK, callback_data=f"upmod_{mod_id}")])
