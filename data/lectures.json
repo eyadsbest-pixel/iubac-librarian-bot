@@ -1599,7 +1599,12 @@
         {
           "id": "7a5f83fe",
           "name": "💫 Embryology",
-          "lectures": []
+          "lectures": [
+            {
+              "id": "l1783345896",
+              "name": "Embryology CNS “1” Development Of CNS"
+            }
+          ]
         },
         {
           "id": "52d49587",
