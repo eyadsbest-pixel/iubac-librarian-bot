@@ -862,7 +862,12 @@
           "id": "ugs_physiology",
           "name": "💫 Physiology",
           "message_id": 2789,
-          "lectures": []
+          "lectures": [
+            {
+              "id": "l1783310452",
+              "name": "Glomerular Filtration rate (GFR)"
+            }
+          ]
         },
         {
           "id": "ugs_anatomy",
