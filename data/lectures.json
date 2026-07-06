@@ -765,7 +765,12 @@
           "id": "ugs_histology",
           "name": "💫 Histology",
           "message_id": 2787,
-          "lectures": []
+          "lectures": [
+            {
+              "id": "l1783305917",
+              "name": "Histology of urinary system"
+            }
+          ]
         },
         {
           "id": "ugs_microbiology",
