@@ -1480,7 +1480,12 @@
         {
           "id": "38edbe18",
           "name": "💫 Pharmacology",
-          "lectures": []
+          "lectures": [
+            {
+              "id": "l1783344520",
+              "name": "“1” Sedatives and Hypnotics 'I'"
+            }
+          ]
         },
         {
           "id": "905aa58c",
