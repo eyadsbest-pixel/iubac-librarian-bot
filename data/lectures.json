@@ -1218,7 +1218,12 @@
         {
           "id": "38ca1651",
           "name": "💫 Histology",
-          "lectures": []
+          "lectures": [
+            {
+              "id": "l1783337214",
+              "name": "“1” Spinal Cord I"
+            }
+          ]
         },
         {
           "id": "98b1ce67",
