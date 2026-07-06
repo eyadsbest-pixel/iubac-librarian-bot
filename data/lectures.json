@@ -1094,7 +1094,12 @@
           "id": "ugs_pathology",
           "name": "💫 Pathology",
           "message_id": 2794,
-          "lectures": []
+          "lectures": [
+            {
+              "id": "l1783327761",
+              "name": "Vulva & Vagina Pathology"
+            }
+          ]
         },
         {
           "id": "ugs_community_medicine_surgery",
