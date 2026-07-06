@@ -1636,7 +1636,12 @@
           "id": "7b7f7c7c",
           "name": "💫 Pathology",
           "files": [],
-          "lectures": []
+          "lectures": [
+            {
+              "id": "l1783333912",
+              "name": "“1” Vasculitis"
+            }
+          ]
         },
         {
           "id": "c63bf041",
