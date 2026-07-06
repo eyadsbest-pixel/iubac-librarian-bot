@@ -1479,13 +1479,11 @@
             {
               "id": "l1783345051",
               "name": "Lab Anatomy 🥼",
-              "pdf_file_id": "BQACAgQAAxkBAAIlFWpLr6Di5r0DelZ4oJkGZvPY666wAALDHwACVK8BUzxTOaYZTGWqPAQ",
-              "summary_file_id": "BQACAgQAAxkBAAIlIWpLsKRe0Be2F4FkKkh_x4nHviXcAALhHQACIjNgUsLTuqFVNCP5PAQ"
+              "pdf_file_id": "BQACAgQAAxkBAAIlFWpLr6Di5r0DelZ4oJkGZvPY666wAALDHwACVK8BUzxTOaYZTGWqPAQ"
             },
             {
               "id": "l1783345348",
               "name": "Lab Anatomy 🥼 2",
-              "summary_file_id": "BQACAgQAAxkBAAIlIWpLsKRe0Be2F4FkKkh_x4nHviXcAALhHQACIjNgUsLTuqFVNCP5PAQ",
               "pdf_file_id": "BQACAgQAAxkBAAIlIWpLsKRe0Be2F4FkKkh_x4nHviXcAALhHQACIjNgUsLTuqFVNCP5PAQ"
             }
           ]
@@ -1565,7 +1563,12 @@
         {
           "id": "905aa58c",
           "name": "💫 Biochemistry",
-          "lectures": []
+          "lectures": [
+            {
+              "id": "l1783345466",
+              "name": "“1” Brain Energy Metabolism ‘I’ Part 1"
+            }
+          ]
         },
         {
           "id": "7a5f83fe",
