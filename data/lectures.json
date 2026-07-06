@@ -2199,7 +2199,12 @@
         {
           "id": "815a191d",
           "name": "💫 Histology",
-          "lectures": []
+          "lectures": [
+            {
+              "id": "l1783334882",
+              "name": "Digestive system 1"
+            }
+          ]
         },
         {
           "id": "92087652",
