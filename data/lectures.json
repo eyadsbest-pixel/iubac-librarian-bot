@@ -1611,7 +1611,12 @@
         {
           "id": "52d49587",
           "name": "💫 Pathology",
-          "lectures": []
+          "lectures": [
+            {
+              "id": "l1783346150",
+              "name": "“1” Pathology of the Brain Part 1"
+            }
+          ]
         },
         {
           "id": "3aa47af8",
