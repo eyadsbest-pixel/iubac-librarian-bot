@@ -866,6 +866,10 @@
             {
               "id": "l1783310452",
               "name": "Glomerular Filtration rate (GFR)"
+            },
+            {
+              "id": "l1783310485",
+              "name": "Regulation of GFR & renal blood flow"
             }
           ]
         },
