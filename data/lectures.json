@@ -989,7 +989,12 @@
           "id": "ugs_pharmacology",
           "name": "💫 Pharmacology",
           "message_id": 2791,
-          "lectures": []
+          "lectures": [
+            {
+              "id": "l1783325733",
+              "name": "Drugs & the kidney"
+            }
+          ]
         },
         {
           "id": "ugs_biochemistry",
