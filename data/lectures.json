@@ -1675,8 +1675,11 @@
             {
               "id": "l1783347424",
               "name": "All lectures Except \nSurgery \nPhysio 3, 4, 8\nPharma 2, 4, 5, 6, 8\nAnatomy 13",
-              "audio_file_id": "BQACAgQAAxkBAAImG2pLuOmtBWinnbkvo-I_uTDuwPU6AALnHQACIjNgUhRBg8-5WuxcPAQ",
               "pdf_file_id": "BQACAgQAAxkBAAImG2pLuOmtBWinnbkvo-I_uTDuwPU6AALnHQACIjNgUhRBg8-5WuxcPAQ"
+            },
+            {
+              "id": "l1783348142",
+              "name": "Lab Archive"
             }
           ]
         }
