@@ -1376,7 +1376,12 @@
         {
           "id": "999452f1",
           "name": "💫 Anatomy",
-          "lectures": []
+          "lectures": [
+            {
+              "id": "l1783343404",
+              "name": "“1” Meninges & Dural Venous Sinuses"
+            }
+          ]
         },
         {
           "id": "38edbe18",
