@@ -2825,7 +2825,12 @@
           "id": "9cf2d16d",
           "name": "General Psychology",
           "files": [],
-          "lectures": []
+          "lectures": [
+            {
+              "id": "l1783367593",
+              "name": "“1” Mental Health & Mental Illness"
+            }
+          ]
         }
       ]
     }
