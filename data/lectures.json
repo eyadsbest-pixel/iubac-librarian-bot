@@ -2947,7 +2947,13 @@
       "id": "0cee1db3",
       "name": "الإحصاء الحيويّ - Biostatistics",
       "name_short": "الإحصاء الحيويّ",
-      "subjects": []
+      "subjects": [
+        {
+          "id": "2dc77a95",
+          "name": "Biostatistics Lectures",
+          "files": []
+        }
+      ]
     }
   ]
 }
