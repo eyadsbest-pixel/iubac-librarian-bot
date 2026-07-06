@@ -2942,6 +2942,12 @@
           ]
         }
       ]
+    },
+    {
+      "id": "0cee1db3",
+      "name": "الإحصاء الحيويّ - Biostatistics",
+      "name_short": "الإحصاء الحيويّ",
+      "subjects": []
     }
   ]
 }
