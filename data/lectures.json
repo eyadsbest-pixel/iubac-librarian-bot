@@ -1544,7 +1544,12 @@
           "id": "042d36cf",
           "name": "💫 Biochemistry",
           "files": [],
-          "lectures": []
+          "lectures": [
+            {
+              "id": "l1783333048",
+              "name": "“1” Biochemistry Of Cardiac Muscles ‘I’ Part 1"
+            }
+          ]
         },
         {
           "id": "a050a958",
