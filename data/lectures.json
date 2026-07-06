@@ -2913,7 +2913,12 @@
           "id": "bcba71b0",
           "name": "Sorted Archive",
           "files": [],
-          "lectures": []
+          "lectures": [
+            {
+              "id": "l1783368736",
+              "name": "أرشيف المحاضرات كامل"
+            }
+          ]
         }
       ]
     }
