@@ -1188,7 +1188,12 @@
           "id": "ugs_community_medicine_surgery",
           "name": "💫 Community & Medicine & Surgery",
           "message_id": 2795,
-          "lectures": []
+          "lectures": [
+            {
+              "id": "l1783330242",
+              "name": "Sexually transmitted diseases"
+            }
+          ]
         },
         {
           "id": "7342ab4b",
