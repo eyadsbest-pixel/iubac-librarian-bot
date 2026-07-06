@@ -2820,7 +2820,13 @@
       "id": "9ea6f17c",
       "name": "‎عِلم النّفْس - ‎Psychology",
       "name_short": "‎عِلم النّفْس",
-      "subjects": []
+      "subjects": [
+        {
+          "id": "9cf2d16d",
+          "name": "General Psychology",
+          "files": []
+        }
+      ]
     }
   ]
 }
