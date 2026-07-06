@@ -1038,7 +1038,12 @@
           "id": "ugs_biochemistry",
           "name": "💫 Biochemistry",
           "message_id": 2792,
-          "lectures": []
+          "lectures": [
+            {
+              "id": "l1783326307",
+              "name": "Acid base balance"
+            }
+          ]
         },
         {
           "id": "ugs_embryology",
