@@ -2952,7 +2952,12 @@
           "id": "2dc77a95",
           "name": "Biostatistics Lectures",
           "files": [],
-          "lectures": []
+          "lectures": [
+            {
+              "id": "l1783376265",
+              "name": "“1” Introduction & Overview 'I'"
+            }
+          ]
         },
         {
           "id": "e19242ba",
