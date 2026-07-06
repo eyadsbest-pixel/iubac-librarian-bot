@@ -2978,7 +2978,8 @@
         {
           "id": "45438036",
           "name": "Final Archive",
-          "files": []
+          "files": [],
+          "lectures": []
         }
       ]
     }
