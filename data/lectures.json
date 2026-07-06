@@ -922,7 +922,12 @@
           "id": "ugs_anatomy",
           "name": "💫 Anatomy",
           "message_id": 2790,
-          "lectures": []
+          "lectures": [
+            {
+              "id": "l1783324470",
+              "name": "Pelvic floor"
+            }
+          ]
         },
         {
           "id": "ugs_pharmacology",
