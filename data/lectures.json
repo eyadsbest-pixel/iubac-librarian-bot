@@ -1305,7 +1305,12 @@
         {
           "id": "eee50c4e",
           "name": "💫 Physiology",
-          "lectures": []
+          "lectures": [
+            {
+              "id": "l1783342691",
+              "name": "“1” Somatic, Pain and Thermal Sensation"
+            }
+          ]
         },
         {
           "id": "999452f1",
