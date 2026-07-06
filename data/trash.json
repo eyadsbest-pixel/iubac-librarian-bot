@@ -1,5 +1,15 @@
 [
   {
+    "trash_id": "b5393b20",
+    "type": "lecture",
+    "parent_id": "eee50c4e",
+    "data": {
+      "id": "l1783342691",
+      "name": "“1” Somatic, Pain and Thermal Sensation"
+    },
+    "deleted_at": 1783342721
+  },
+  {
     "trash_id": "3e96aa2b",
     "type": "file_pdf",
     "parent_id": "l1783327806",
