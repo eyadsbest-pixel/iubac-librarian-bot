@@ -2979,7 +2979,12 @@
           "id": "45438036",
           "name": "Final Archive",
           "files": [],
-          "lectures": []
+          "lectures": [
+            {
+              "id": "l1783375450",
+              "name": "Shagaf Final"
+            }
+          ]
         }
       ]
     }
