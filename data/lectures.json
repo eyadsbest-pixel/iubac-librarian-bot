@@ -2912,7 +2912,8 @@
         {
           "id": "bcba71b0",
           "name": "Sorted Archive",
-          "files": []
+          "files": [],
+          "lectures": []
         }
       ]
     }
