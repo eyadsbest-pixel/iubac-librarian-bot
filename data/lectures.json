@@ -1281,7 +1281,12 @@
         {
           "id": "98b1ce67",
           "name": "💫 Microbiology",
-          "lectures": []
+          "lectures": [
+            {
+              "id": "l1783342547",
+              "name": "“1” Bacterial and Viral Meningitis"
+            }
+          ]
         },
         {
           "id": "eee50c4e",
