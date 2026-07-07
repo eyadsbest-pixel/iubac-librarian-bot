@@ -2926,7 +2926,12 @@
           "id": "a2656793",
           "name": "Histology 💫",
           "files": [],
-          "lectures": []
+          "lectures": [
+            {
+              "id": "l1783425202",
+              "name": "Histo \"1\", skin"
+            }
+          ]
         },
         {
           "id": "b3d6dded",
