@@ -1235,7 +1235,8 @@
         {
           "id": "7342ab4b",
           "name": "Archive",
-          "files": []
+          "files": [],
+          "lectures": []
         }
       ]
     },
