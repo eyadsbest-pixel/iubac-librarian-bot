@@ -378,7 +378,12 @@
           "id": "ce5132f2",
           "name": "Archive",
           "files": [],
-          "lectures": []
+          "lectures": [
+            {
+              "id": "l1783413808",
+              "name": "Collected archive"
+            }
+          ]
         }
       ]
     },
