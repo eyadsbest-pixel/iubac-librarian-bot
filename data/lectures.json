@@ -1236,7 +1236,12 @@
           "id": "7342ab4b",
           "name": "Archive",
           "files": [],
-          "lectures": []
+          "lectures": [
+            {
+              "id": "l1783410565",
+              "name": "Collected archive"
+            }
+          ]
         }
       ]
     },
