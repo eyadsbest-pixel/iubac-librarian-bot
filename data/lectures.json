@@ -806,7 +806,12 @@
           "id": "c497f012",
           "name": "Archive",
           "files": [],
-          "lectures": []
+          "lectures": [
+            {
+              "id": "l1783412584",
+              "name": "Collected archive"
+            }
+          ]
         }
       ]
     },
