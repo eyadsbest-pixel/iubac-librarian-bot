@@ -3208,7 +3208,12 @@
           "id": "d7dc8744",
           "name": "Lectures",
           "files": [],
-          "lectures": []
+          "lectures": [
+            {
+              "id": "l1783502476",
+              "name": "Lec 1 (Introduction to occupational health)"
+            }
+          ]
         }
       ]
     },
