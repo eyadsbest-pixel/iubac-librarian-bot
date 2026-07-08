@@ -3207,7 +3207,8 @@
         {
           "id": "d7dc8744",
           "name": "Lectures",
-          "files": []
+          "files": [],
+          "lectures": []
         }
       ]
     },
