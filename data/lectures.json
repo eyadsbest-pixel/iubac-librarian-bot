@@ -3344,7 +3344,12 @@
           "id": "ca982629",
           "name": "Lectures",
           "files": [],
-          "lectures": []
+          "lectures": [
+            {
+              "id": "l1783543709",
+              "name": "Health Administration overview 1"
+            }
+          ]
         }
       ]
     }
