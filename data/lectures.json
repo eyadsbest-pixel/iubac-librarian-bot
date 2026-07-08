@@ -3203,7 +3203,13 @@
       "id": "49cec7d9",
       "name": "Occupational health",
       "name_short": "Occupational health",
-      "subjects": []
+      "subjects": [
+        {
+          "id": "d7dc8744",
+          "name": "Lectures",
+          "files": []
+        }
+      ]
     },
     {
       "id": "6d31988f",
