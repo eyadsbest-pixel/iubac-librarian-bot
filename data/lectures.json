@@ -3204,6 +3204,12 @@
       "name": "Occupational health",
       "name_short": "Occupational health",
       "subjects": []
+    },
+    {
+      "id": "6d31988f",
+      "name": "Health administration",
+      "name_short": "Health administration",
+      "subjects": []
     }
   ]
 }
