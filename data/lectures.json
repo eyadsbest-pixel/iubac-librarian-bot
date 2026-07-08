@@ -3343,7 +3343,8 @@
         {
           "id": "ca982629",
           "name": "Lectures",
-          "files": []
+          "files": [],
+          "lectures": []
         }
       ]
     }
