@@ -3215,7 +3215,13 @@
       "id": "6d31988f",
       "name": "Health administration",
       "name_short": "Health administration",
-      "subjects": []
+      "subjects": [
+        {
+          "id": "ca982629",
+          "name": "Lectures",
+          "files": []
+        }
+      ]
     }
   ]
 }
