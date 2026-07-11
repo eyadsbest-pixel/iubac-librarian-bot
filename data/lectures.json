@@ -3448,6 +3448,11 @@
           "id": "0ea67740",
           "name": "Books",
           "files": []
+        },
+        {
+          "id": "81780a6c",
+          "name": "Lectures",
+          "files": []
         }
       ]
     }
