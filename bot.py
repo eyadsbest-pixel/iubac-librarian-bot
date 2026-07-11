@@ -915,7 +915,7 @@ async def start_command(update: Update, context: ContextTypes.DEFAULT_TYPE) -> i
     """Entry point for students."""
     # Ensure they have a clean keyboard
     welcome = (
-        "🔤 <b>بسم الله الرّحمن الرّحيم</b> 🔤\n\n"
+        "<b>بسم الله الرّحمن الرّحيم</b>\n\n"
         "📚 <b>أهلًا بك في بوت أمين مكتبة أيوباك!</b>\n"
         "أنا هنا لمساعدتك في الوصول إلى ملفات المحاضرات بسهولة.\n\n"
         "استخدم الأمر /menu لعرض القائمة."
