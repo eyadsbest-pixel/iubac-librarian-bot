@@ -3443,7 +3443,13 @@
       "id": "73e0f708",
       "name": "🏥 🩺الفحص السّريريّ- Macleod",
       "name_short": "🏥 🩺الفحص السّريريّ",
-      "subjects": []
+      "subjects": [
+        {
+          "id": "0ea67740",
+          "name": "Books",
+          "files": []
+        }
+      ]
     }
   ]
 }
