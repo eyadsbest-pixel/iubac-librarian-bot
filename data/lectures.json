@@ -3448,7 +3448,12 @@
           "id": "0ea67740",
           "name": "Books",
           "files": [],
-          "lectures": []
+          "lectures": [
+            {
+              "id": "l1783789484",
+              "name": "Macleod'English'Version"
+            }
+          ]
         },
         {
           "id": "81780a6c",
