@@ -1152,13 +1152,12 @@ async def student_lecture_handler(update: Update, context: ContextTypes.DEFAULT_
 
 # ── App Setup ────────────────────────────────────────────────────────────────
 async def post_init(application: Application) -> None:
-    commands = [
+    # Default commands visible to everyone (no /admin)
+    default_commands = [
         BotCommand("start", "بدء البوت 🚀"),
         BotCommand("menu", "القائمة الرئيسيّة 📋"),
     ]
-    if SUPER_ADMIN:
-        commands.append(BotCommand("admin", "لوحة تحكم المشرفين 🛠"))
-    await application.bot.set_my_commands(commands)
+    await application.bot.set_my_commands(default_commands)
     logger.info("Bot commands set successfully.")
 
 # ── Keep-Alive Web Server (for Render.com) ───────────────────────────────────
