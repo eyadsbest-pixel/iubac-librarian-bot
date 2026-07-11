@@ -1,5 +1,15 @@
 [
   {
+    "trash_id": "a4628964",
+    "type": "lecture",
+    "parent_id": "0ea67740",
+    "data": {
+      "id": "l1783789506",
+      "name": "Macleod'Arabic'Version"
+    },
+    "deleted_at": 1783789628
+  },
+  {
     "trash_id": "21edc1d4",
     "type": "lecture",
     "parent_id": "ca982629",
