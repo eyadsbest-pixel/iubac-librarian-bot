@@ -18,7 +18,8 @@ from telegram import (
     InlineKeyboardMarkup,
     ReplyKeyboardMarkup,
     ReplyKeyboardRemove,
-    BotCommand
+    BotCommand,
+    BotCommandScopeChat
 )
 from telegram.ext import (
     Application,
@@ -921,6 +922,22 @@ async def start_command(update: Update, context: ContextTypes.DEFAULT_TYPE) -> i
         "استخدم الأمر /menu لعرض القائمة."
     )
     await update.message.reply_text(welcome, parse_mode="HTML", reply_markup=ReplyKeyboardRemove())
+    
+    user = update.effective_user
+    if user and is_admin(user.username):
+        try:
+            admin_commands = [
+                BotCommand("start", "بدء البوت 🚀"),
+                BotCommand("menu", "القائمة الرئيسيّة 📋"),
+                BotCommand("admin", "لوحة تحكم المشرفين 🛠")
+            ]
+            await context.bot.set_my_commands(
+                admin_commands,
+                scope=BotCommandScopeChat(chat_id=update.effective_chat.id)
+            )
+        except Exception as e:
+            logger.error(f"Failed to set admin commands for {user.username}: {e}")
+            
     return ConversationHandler.END
 
 async def menu_command(update: Update, context: ContextTypes.DEFAULT_TYPE) -> int:
