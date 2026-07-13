@@ -3493,7 +3493,12 @@
           "id": "9cb06a48",
           "name": "📚 Books",
           "files": [],
-          "lectures": []
+          "lectures": [
+            {
+              "id": "l1783957431",
+              "name": "Macleod'English'Version"
+            }
+          ]
         },
         {
           "id": "40495c2b",
