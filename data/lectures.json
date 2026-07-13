@@ -3465,10 +3465,6 @@
               "pdf_file_id": "BQACAgQAAxkBAAIxGGpSeJ5T_sdFDJIF3dNz-G6eInsaAAJCIAAC6IWYUn_HFL5UprxWPAQ"
             },
             {
-              "id": "l1783964595",
-              "name": "Bates’  \nRecommended by Dr Walid"
-            },
-            {
               "id": "l1783964669",
               "name": "Bates’  'I'\nRecommended by Dr Walid",
               "pdf_file_id": "BQACAgQAAxkBAAI1m2pVKfiut3dXswABvc87oW9DLU63OAACSh4AAomtqVK_7CqLy_llYTwE"
@@ -3483,7 +3479,8 @@
         {
           "id": "40495c2b",
           "name": "📑 Lectures & Slides",
-          "files": []
+          "files": [],
+          "lectures": []
         },
         {
           "id": "8a18c1b3",
