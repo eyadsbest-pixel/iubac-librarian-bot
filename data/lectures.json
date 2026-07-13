@@ -3488,7 +3488,13 @@
       "id": "161c8650",
       "name": "🏥 🩺مقدمة في العلوم السريرية- 'ICS'\nIntroduction to Clinical Sciences",
       "name_short": "🏥 🩺مقدمة في العلوم السريرية",
-      "subjects": []
+      "subjects": [
+        {
+          "id": "9cb06a48",
+          "name": "📚 Books",
+          "files": []
+        }
+      ]
     }
   ]
 }
