@@ -3440,51 +3440,6 @@
       ]
     },
     {
-      "id": "73e0f708",
-      "name": "🏥 🩺الفحص السّريريّ- Macleod",
-      "name_short": "🏥 🩺الفحص السّريريّ",
-      "subjects": [
-        {
-          "id": "0ea67740",
-          "name": "Books",
-          "files": [],
-          "lectures": [
-            {
-              "id": "l1783789484",
-              "name": "Macleod'English'Version",
-              "pdf_file_id": "BQACAgQAAxkBAAIxImpSfIyA3VN2woFDb3sVI-W-CcTBAAJqIAAC6IWYUkFUq4oHGLY7PAQ"
-            },
-            {
-              "id": "l1783789602",
-              "name": "Macleod'Arabic'Version ‘I’",
-              "pdf_file_id": "BQACAgQAAxkBAAIxEmpSeI_RaEPBX73HYTrip_4bSiDbAAJDIAAC6IWYUnDMj7vux3_2PAQ"
-            },
-            {
-              "id": "l1783789614",
-              "name": "Macleod'Arabic'Version ‘II’",
-              "pdf_file_id": "BQACAgQAAxkBAAIxGGpSeJ5T_sdFDJIF3dNz-G6eInsaAAJCIAAC6IWYUn_HFL5UprxWPAQ"
-            }
-          ]
-        },
-        {
-          "id": "81780a6c",
-          "name": "Lectures",
-          "files": []
-        },
-        {
-          "id": "c3364d8c",
-          "name": "Archive",
-          "files": []
-        }
-      ]
-    },
-    {
-      "id": "fc81c062",
-      "name": "🏥 🩺    مقدمة في العلوم السريرية- 'ICS'\nIntroduction to Clinical Sciences",
-      "name_short": "🏥 🩺    مقدمة في العلوم السريرية",
-      "subjects": []
-    },
-    {
       "id": "161c8650",
       "name": "🏥 🩺مقدمة في العلوم السريرية- 'ICS'\nIntroduction to Clinical Sciences",
       "name_short": "🏥 🩺مقدمة في العلوم السريرية",
