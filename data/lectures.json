@@ -3480,7 +3480,12 @@
           "id": "40495c2b",
           "name": "📑 Lectures & Slides",
           "files": [],
-          "lectures": []
+          "lectures": [
+            {
+              "id": "l1783966364",
+              "name": "ICS\"1\" Introduction & Hx Taking"
+            }
+          ]
         },
         {
           "id": "8a18c1b3",
