@@ -1,5 +1,15 @@
 [
   {
+    "trash_id": "9005496e",
+    "type": "lecture",
+    "parent_id": "9cb06a48",
+    "data": {
+      "id": "l1783964595",
+      "name": "Bates’  \nRecommended by Dr Walid"
+    },
+    "deleted_at": 1783966231
+  },
+  {
     "trash_id": "d18e921e",
     "type": "module",
     "parent_id": null,
