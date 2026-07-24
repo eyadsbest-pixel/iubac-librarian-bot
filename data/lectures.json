@@ -3529,16 +3529,6 @@
           "files": [],
           "lectures": [
             {
-              "id": "l1784914796",
-              "name": "Rs",
-              "pdf_file_id": "BQACAgQAAxkBAAJAyWpjo3Xia1iEhax4z5kKdVtIQloZAALbHgACvdQZU7E-ren94ttrPQQ"
-            },
-            {
-              "id": "l1784914833",
-              "name": "CVS",
-              "pdf_file_id": "BQACAgQAAxkBAAJA0Gpjo5mTbs4J0UyZ3XL0Y3TfeIvDAALcHgACvdQZU8VKdY7n-tLvPQQ"
-            },
-            {
               "id": "l1784914880",
               "name": "CVS history taking",
               "pdf_file_id": "BQACAgQAAxkBAAJA12pjo8gtEVl4VXg7YDtagC8xskBoAALaHgACvdQZU7d8k0jNL-r5PQQ"
@@ -3547,6 +3537,10 @@
               "id": "l1784914907",
               "name": "RS history taking",
               "pdf_file_id": "BQACAgQAAxkBAAJA3mpjo-LxRSEtP2nC1wxgbMbUedGUAALZHgACvdQZUzVZ6wABOWYigD0E"
+            },
+            {
+              "id": "l1784914938",
+              "name": "CVS physical examination"
             }
           ]
         }
