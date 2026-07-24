@@ -1,5 +1,16 @@
 [
   {
+    "trash_id": "a4745ad5",
+    "type": "lecture",
+    "parent_id": "c53ef5f4",
+    "data": {
+      "id": "l1784914833",
+      "name": "CVS",
+      "pdf_file_id": "BQACAgQAAxkBAAJA0Gpjo5mTbs4J0UyZ3XL0Y3TfeIvDAALcHgACvdQZU8VKdY7n-tLvPQQ"
+    },
+    "deleted_at": 1784914921
+  },
+  {
     "trash_id": "9005496e",
     "type": "lecture",
     "parent_id": "9cb06a48",
