@@ -3527,7 +3527,12 @@
           "id": "c53ef5f4",
           "name": "Mcqs",
           "files": [],
-          "lectures": []
+          "lectures": [
+            {
+              "id": "l1784914796",
+              "name": "Rs"
+            }
+          ]
         }
       ]
     }
