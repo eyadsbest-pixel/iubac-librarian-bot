@@ -3157,7 +3157,12 @@
         {
           "id": "1f216eeb",
           "name": "💫 Histology",
-          "lectures": []
+          "lectures": [
+            {
+              "id": "l1785411217",
+              "name": "Histology Of Pituitary & Thyroid & Parathyroid Glands"
+            }
+          ]
         },
         {
           "id": "db2b2cf1",
