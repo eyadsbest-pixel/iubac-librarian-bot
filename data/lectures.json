@@ -3063,7 +3063,12 @@
         {
           "id": "329d3a35",
           "name": "💫 Pathology",
-          "lectures": []
+          "lectures": [
+            {
+              "id": "l1785410712",
+              "name": "Disease Of The Oral Cavity & Esophagus"
+            }
+          ]
         },
         {
           "id": "51a95d93",
