@@ -2791,7 +2791,12 @@
         {
           "id": "92087652",
           "name": "💫 Microbiology",
-          "lectures": []
+          "lectures": [
+            {
+              "id": "l1785408741",
+              "name": "Parasitic Infection I - Schistosoma & Hydatid Cyst"
+            }
+          ]
         },
         {
           "id": "ed5d02a0",
