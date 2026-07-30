@@ -3119,7 +3119,12 @@
         {
           "id": "51a95d93",
           "name": "💫 Surgery & Medicine",
-          "lectures": []
+          "lectures": [
+            {
+              "id": "l1785411065",
+              "name": "Community 1 - Irritable Bowel Syndrome IBS"
+            }
+          ]
         },
         {
           "id": "e6490218",
