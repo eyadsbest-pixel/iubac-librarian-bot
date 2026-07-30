@@ -3011,7 +3011,12 @@
         {
           "id": "ed4eda31",
           "name": "💫 Biochemistry",
-          "lectures": []
+          "lectures": [
+            {
+              "id": "l1785410073",
+              "name": "Major Types Of Nutrition & Digestion"
+            }
+          ]
         },
         {
           "id": "b07e0ed6",
