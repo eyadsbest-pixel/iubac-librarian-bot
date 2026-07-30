@@ -3037,7 +3037,12 @@
         {
           "id": "b07e0ed6",
           "name": "💫 Embryology",
-          "lectures": []
+          "lectures": [
+            {
+              "id": "l1785410206",
+              "name": "Development Of Tongue & Esophagus & Liver & Biliary system"
+            }
+          ]
         },
         {
           "id": "329d3a35",
