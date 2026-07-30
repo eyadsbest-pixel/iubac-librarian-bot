@@ -2970,7 +2970,12 @@
         {
           "id": "4d0998dc",
           "name": "💫 Pharmacology",
-          "lectures": []
+          "lectures": [
+            {
+              "id": "l1785409782",
+              "name": "Drugs & The Liver"
+            }
+          ]
         },
         {
           "id": "ed4eda31",
