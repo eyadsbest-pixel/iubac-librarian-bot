@@ -2842,7 +2842,12 @@
         {
           "id": "ed5d02a0",
           "name": "💫 Physiology",
-          "lectures": []
+          "lectures": [
+            {
+              "id": "l1785409018",
+              "name": "Salivary Secretion & Swallowing & Esophageal Motility"
+            }
+          ]
         },
         {
           "id": "db85e0aa",
