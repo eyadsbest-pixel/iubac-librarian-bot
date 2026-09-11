@@ -54,6 +54,7 @@ DATA_DIR.mkdir(exist_ok=True)
 LECTURES_FILE = DATA_DIR / "lectures.json"
 ADMINS_FILE = DATA_DIR / "admins.json"
 TRASH_FILE = DATA_DIR / "trash.json"
+USERS_FILE = DATA_DIR / "users.json"
 
 # ── GitHub-backed Storage ────────────────────────────────────────────────────
 GITHUB_TOKEN = os.getenv("GITHUB_TOKEN")
@@ -137,6 +138,15 @@ def _init_data_files():
         elif not TRASH_FILE.exists():
             with open(TRASH_FILE, "w", encoding="utf-8") as f:
                 json.dump([], f, ensure_ascii=False, indent=2)
+
+        users_data, _ = _github_download("data/users.json")
+        if users_data:
+            with open(USERS_FILE, "w", encoding="utf-8") as f:
+                json.dump(users_data, f, ensure_ascii=False, indent=2)
+            logger.info("Downloaded users.json from GitHub.")
+        elif not USERS_FILE.exists():
+            with open(USERS_FILE, "w", encoding="utf-8") as f:
+                json.dump([], f, ensure_ascii=False, indent=2)
     else:
         logger.info("GitHub storage not configured. Using local files only.")
         if not LECTURES_FILE.exists():
@@ -147,6 +157,9 @@ def _init_data_files():
                 json.dump(default_admins, f, ensure_ascii=False, indent=2)
         if not TRASH_FILE.exists():
             with open(TRASH_FILE, "w", encoding="utf-8") as f:
+                json.dump([], f, ensure_ascii=False, indent=2)
+        if not USERS_FILE.exists():
+            with open(USERS_FILE, "w", encoding="utf-8") as f:
                 json.dump([], f, ensure_ascii=False, indent=2)
 
 _init_data_files()
@@ -188,6 +201,26 @@ def save_trash(data):
         t = threading.Thread(target=_github_upload, args=("data/trash.json", data, "Update trash data"), daemon=True)
         t.start()
 
+def load_users():
+    if not USERS_FILE.exists():
+        return []
+    with open(USERS_FILE, "r", encoding="utf-8") as f:
+        return json.load(f)
+
+def save_users(users_list):
+    with open(USERS_FILE, "w", encoding="utf-8") as f:
+        json.dump(users_list, f, ensure_ascii=False, indent=2)
+    if GITHUB_TOKEN and GITHUB_REPO:
+        t = threading.Thread(target=_github_upload, args=("data/users.json", users_list, "Update users data"), daemon=True)
+        t.start()
+
+def register_user(chat_id: int):
+    """Add a chat_id to the known users list if not already present."""
+    users = load_users()
+    if chat_id not in users:
+        users.append(chat_id)
+        save_users(users)
+
 def trash_item(item_type, data, parent_id=None):
     trash = load_trash()
     trash.insert(0, {
@@ -225,6 +258,8 @@ A_WAIT_FOR_LECTURE_FILE = 18
 A_MANAGE_ADMINS = 19
 A_WAIT_FOR_ADMIN_USERNAME = 20
 A_MANAGE_TRASH = 21
+A_BROADCAST_MSG = 22
+A_BROADCAST_CONFIRM = 23
 
 STUDENT_LECTURE = 3
 
@@ -247,6 +282,7 @@ async def admin_start(update: Update, context: ContextTypes.DEFAULT_TYPE) -> int
         [InlineKeyboardButton("📚 إدارة المواد (Subjects)", callback_data="admin_subjects")],
         [InlineKeyboardButton("📝 إدارة المحاضرات (Lectures)", callback_data="admin_lectures")],
         [InlineKeyboardButton("👥 إدارة المشرفين", callback_data="admin_admins")],
+        [InlineKeyboardButton("📢 إرسال إعلان (Broadcast)", callback_data="admin_broadcast")],
         [InlineKeyboardButton("🗑 سلة المحذوفات", callback_data="admin_trash")],
         [InlineKeyboardButton("❌ إغلاق لوحة التحكم", callback_data="admin_close")]
     ]
@@ -287,6 +323,18 @@ async def admin_main_cb(update: Update, context: ContextTypes.DEFAULT_TYPE) -> i
         
     elif data == "admin_trash":
         return await show_trash_menu(query, context)
+    
+    elif data == "admin_broadcast":
+        users = load_users()
+        user_count = len(users)
+        await query.edit_message_text(
+            f"📢 <b>إرسال إعلان عام</b>\n\n"
+            f"سيتم إرسال رسالتك إلى <b>{user_count}</b> مستخدم.\n\n"
+            f"✏️ اكتب الرسالة التي تريد إرسالها الآن:\n"
+            f"<i>(أو أرسل /cancel للإلغاء)</i>",
+            parse_mode="HTML"
+        )
+        return A_BROADCAST_MSG
 
     return A_MAIN
 
@@ -909,6 +957,100 @@ async def cancel_admin(update: Update, context: ContextTypes.DEFAULT_TYPE) -> in
     await update.message.reply_text("تم الإلغاء.", reply_markup=ReplyKeyboardRemove())
     return ConversationHandler.END
 
+# -- Broadcast --
+async def receive_broadcast_msg(update: Update, context: ContextTypes.DEFAULT_TYPE) -> int:
+    """Receive the broadcast message text from admin."""
+    text = update.message.text
+    if not text:
+        await update.message.reply_text("⚠️ الرجاء إرسال رسالة نصية.")
+        return A_BROADCAST_MSG
+    
+    context.user_data["broadcast_text"] = text
+    users = load_users()
+    user_count = len(users)
+    
+    # Show preview and confirmation
+    keyboard = InlineKeyboardMarkup([
+        [InlineKeyboardButton("✅ إرسال للجميع", callback_data="broadcast_send")],
+        [InlineKeyboardButton("❌ إلغاء", callback_data="broadcast_cancel")]
+    ])
+    
+    preview = (
+        f"📢 <b>معاينة الإعلان</b>\n\n"
+        f"<blockquote>{text}</blockquote>\n\n"
+        f"سيتم إرسال هذه الرسالة إلى <b>{user_count}</b> مستخدم.\n"
+        f"هل تريد المتابعة؟"
+    )
+    await update.message.reply_text(preview, reply_markup=keyboard, parse_mode="HTML")
+    return A_BROADCAST_CONFIRM
+
+async def broadcast_confirm_cb(update: Update, context: ContextTypes.DEFAULT_TYPE) -> int:
+    """Handle broadcast confirmation or cancellation."""
+    query = update.callback_query
+    await query.answer()
+    data = query.data
+    
+    if data == "broadcast_cancel":
+        await query.edit_message_text("❌ تم إلغاء الإعلان.")
+        return await admin_start(update, context)
+    
+    if data == "broadcast_send":
+        text = context.user_data.get("broadcast_text", "")
+        if not text:
+            await query.edit_message_text("⚠️ حدث خطأ. لا توجد رسالة للإرسال.")
+            return await admin_start(update, context)
+        
+        users = load_users()
+        user_count = len(users)
+        await query.edit_message_text(f"📤 جاري الإرسال إلى {user_count} مستخدم... انتظر قليلاً.")
+        
+        # Send broadcast in background to avoid blocking
+        bot = context.bot
+        chat_id = update.effective_chat.id
+        
+        async def _do_broadcast():
+            success = 0
+            failed = 0
+            blocked = []
+            for uid in users:
+                try:
+                    await bot.send_message(chat_id=uid, text=text)
+                    success += 1
+                except Exception as e:
+                    failed += 1
+                    err_msg = str(e).lower()
+                    if "blocked" in err_msg or "deactivated" in err_msg or "not found" in err_msg:
+                        blocked.append(uid)
+                    logger.warning(f"Broadcast to {uid} failed: {e}")
+                # Small delay to avoid Telegram rate limits
+                import asyncio
+                await asyncio.sleep(0.05)
+            
+            # Remove blocked/deactivated users from the list
+            if blocked:
+                current_users = load_users()
+                current_users = [u for u in current_users if u not in blocked]
+                save_users(current_users)
+            
+            # Notify admin of results
+            try:
+                result_msg = (
+                    f"✅ <b>تم إرسال الإعلان!</b>\n\n"
+                    f"📨 نجح: <b>{success}</b>\n"
+                    f"❌ فشل: <b>{failed}</b>"
+                )
+                if blocked:
+                    result_msg += f"\n🚫 تم حذف <b>{len(blocked)}</b> مستخدم محظور/معطّل"
+                await bot.send_message(chat_id=chat_id, text=result_msg, parse_mode="HTML")
+            except Exception as e:
+                logger.error(f"Failed to send broadcast results: {e}")
+        
+        import asyncio
+        asyncio.ensure_future(_do_broadcast())
+        return ConversationHandler.END
+    
+    return A_BROADCAST_CONFIRM
+
 
 # ── Student Workflow ─────────────────────────────────────────────────────────
 
@@ -922,6 +1064,9 @@ async def start_command(update: Update, context: ContextTypes.DEFAULT_TYPE) -> i
         "استخدم الأمر /menu لعرض القائمة."
     )
     await update.message.reply_text(welcome, parse_mode="HTML", reply_markup=ReplyKeyboardRemove())
+    
+    # Track user for broadcast
+    register_user(update.effective_chat.id)
     
     user = update.effective_user
     if user and is_admin(user.username):
@@ -941,6 +1086,7 @@ async def start_command(update: Update, context: ContextTypes.DEFAULT_TYPE) -> i
     return ConversationHandler.END
 
 async def menu_command(update: Update, context: ContextTypes.DEFAULT_TYPE) -> int:
+    register_user(update.effective_chat.id)
     db = load_data()
     if not db["modules"]:
         await update.message.reply_text("⚠️ المكتبة فارغة حالياً.", reply_markup=ReplyKeyboardRemove())
@@ -1241,7 +1387,9 @@ def main() -> None:
                 CallbackQueryHandler(admin_manage_admins_cb),
                 MessageHandler(filters.TEXT & ~filters.COMMAND, receive_admin_username)
             ],
-            A_MANAGE_TRASH: [CallbackQueryHandler(admin_trash_actions_cb)]
+            A_MANAGE_TRASH: [CallbackQueryHandler(admin_trash_actions_cb)],
+            A_BROADCAST_MSG: [MessageHandler(filters.TEXT & ~filters.COMMAND, receive_broadcast_msg)],
+            A_BROADCAST_CONFIRM: [CallbackQueryHandler(broadcast_confirm_cb)]
         },
         fallbacks=[
             CommandHandler("cancel", cancel_admin), 
