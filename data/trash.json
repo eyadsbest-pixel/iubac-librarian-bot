@@ -1,5 +1,16 @@
 [
   {
+    "trash_id": "489f33a1",
+    "type": "subject",
+    "parent_id": "1f90be91",
+    "data": {
+      "id": "a6032c44",
+      "name": "Seminars",
+      "files": []
+    },
+    "deleted_at": 1789307034
+  },
+  {
     "trash_id": "6b600275",
     "type": "file_not",
     "parent_id": "l1785062238",
