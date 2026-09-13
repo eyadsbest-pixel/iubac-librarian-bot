@@ -3932,7 +3932,13 @@
       "id": "1f90be91",
       "name": "Internal medicine - الباطني",
       "name_short": "Internal medicine",
-      "subjects": []
+      "subjects": [
+        {
+          "id": "722a7f71",
+          "name": "Books 📚",
+          "files": []
+        }
+      ]
     }
   ]
 }
