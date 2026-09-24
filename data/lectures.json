@@ -3937,7 +3937,12 @@
           "id": "722a7f71",
           "name": "Books 📚",
           "files": [],
-          "lectures": []
+          "lectures": [
+            {
+              "id": "l1790226528",
+              "name": "Step up to medicine"
+            }
+          ]
         },
         {
           "id": "227e962c",
